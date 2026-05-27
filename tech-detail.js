@@ -145,7 +145,7 @@
     }
   },
   cyber: {
-    image: "images/cyber-security-modern.png",
+    image: "images/cyber-ai-modern.png",
     alt: "Cyber AI security",
     href: "tech-cyber-ai.html",
     eyebrow: "CYBER AI",
