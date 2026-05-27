@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오시는 길 | AI Future Expo 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050607;
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #f7f8f8;
+      --muted: #a8adb2;
+      --cyan: #00e5ff;
+      --green: #7ef2c8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 16% 8%, rgba(0, 229, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 82% 16%, rgba(126, 242, 200, 0.1), transparent 28%),
+        linear-gradient(180deg, #050607 0%, #071018 100%);
+      font-family: "Pretendard", sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 72px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 6, 7, 0.62);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 900;
+      min-width: 0;
+      flex: 0 1 auto;
+    }
+
+    .brand strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 229, 255, 0.42);
+      border-radius: 50%;
+      color: var(--cyan);
+      font-size: 12px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.2), transparent 64%), rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 26px rgba(0, 229, 255, 0.32);
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .nav-links a {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    main {
+      width: min(1280px, calc(100% - 144px));
+      margin: 0 auto;
+      padding: 136px 0 80px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+
+    .copy,
+    .map-panel,
+    .info-card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.03));
+    }
+
+    .copy {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #dce3e8;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(126, 242, 200, 0.68);
+    }
+
+    h1 {
+      margin-bottom: 22px;
+      font-size: clamp(44px, 6vw, 82px);
+      line-height: 0.96;
+    }
+
+    .lead {
+      color: #d2dade;
+      font-size: 18px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    .map-panel {
+      min-height: 430px;
+      padding: 22px;
+      display: grid;
+      align-content: stretch;
+      gap: 14px;
+    }
+
+    .map-visual {
+      min-height: 300px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.42);
+    }
+
+    .map-zone {
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0, 229, 255, 0.24);
+      border-radius: 8px;
+      background: rgba(0, 229, 255, 0.08);
+      color: var(--cyan);
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .map-zone.small {
+      color: #dce6ea;
+      background: rgba(255, 255, 255, 0.055);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .map-note {
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .info-card {
+      min-height: 220px;
+      padding: 24px;
+    }
+
+    .info-card b {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--cyan);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+    }
+
+    .info-card h2 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .actions a {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid rgba(0, 229, 255, 0.34);
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--cyan);
+      font-weight: 900;
+    }
+
+    @media (max-width: 900px) {
+      .page-nav { padding: 14px 16px; }
+      .brand { font-size: 17px; }
+      .brand span { width: 36px; height: 36px; }
+      .brand strong { max-width: 148px; }
+      .nav-links {
+        gap: 6px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a {
+        flex: 0 0 auto;
+        padding: 0 12px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      main {
+        width: calc(100% - 32px);
+        padding-top: 104px;
+      }
+      .hero,
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 430px) {
+      .nav-links a:first-child { display: none; }
+      .brand strong { max-width: 132px; }
+      .brand span { width: 34px; height: 34px; }
+      .nav-links a { padding: 0 9px; font-size: 11px; }
+      .copy,
+      .map-panel,
+      .info-card { padding: 18px; }
+      .map-visual { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 360px) {
+      .brand strong { max-width: 110px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="page-nav">
+    <a class="brand" href="index.html"><span>AI</span><strong>AI Future Expo</strong></a>
+    <div class="nav-links">
+      <a href="index.html#about">홈</a>
+      <a href="exhibitors.html">참가기업</a>
+      <a href="ticket.html">티켓</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="copy">
+        <span class="eyebrow">VISIT ACCESS</span>
+        <h1>오시는 길</h1>
+        <p class="lead">AI Future Expo 2026은 서울 COEX Grand Ballroom & Hall B에서 진행됩니다. 방문 전 대중교통, 주차, 입장 위치를 확인하세요.</p>
+        <div class="actions">
+          <a href="https://map.naver.com/p/search/COEX" target="_blank" rel="noopener">네이버 지도</a>
+          <a href="https://maps.google.com/?q=COEX%20Seoul" target="_blank" rel="noopener">Google Maps</a>
+        </div>
+      </div>
+
+      <div class="map-panel">
+        <div class="map-visual" aria-label="COEX venue diagram">
+          <div class="map-zone">COEX<br>Grand Ballroom</div>
+          <div class="map-zone small">Hall B</div>
+          <div class="map-zone small">Registration</div>
+          <div class="map-zone small">Program Desk</div>
+        </div>
+        <p class="map-note">상세 입장 게이트와 현장 등록 위치는 행사 운영안이 확정되면 업데이트됩니다.</p>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="info-card">
+        <b>SUBWAY</b>
+        <h2>대중교통</h2>
+        <p>삼성역과 봉은사역에서 COEX로 이동할 수 있습니다. 행사 당일 혼잡 시간대에는 대중교통 이용을 권장합니다.</p>
+      </article>
+      <article class="info-card">
+        <b>PARKING</b>
+        <h2>주차</h2>
+        <p>COEX 주차장을 이용할 수 있으나 전시 기간에는 혼잡할 수 있습니다. 사전 이동 시간을 여유 있게 잡아주세요.</p>
+      </article>
+      <article class="info-card">
+        <b>ENTRY</b>
+        <h2>입장 절차</h2>
+        <p>예매 티켓 또는 현장 등록 확인 후 입장할 수 있습니다. 프로그램 참여자는 시작 시간보다 일찍 도착하는 것이 좋습니다.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
+
+

@@ -1,0 +1,1028 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>티켓 예매 | AI Future Expo 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050607;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #f7f8f8;
+      --muted: #a8adb2;
+      --cyan: #00e5ff;
+      --pink: #e217c7;
+      --gold: #d8b879;
+      --green: #7ef2c8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(5, 6, 7, 0.66), rgba(5, 6, 7, 0.96)),
+        url("images/hero-tech.jpg") center / cover fixed,
+        var(--bg);
+      font-family: "Pretendard", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .ticket-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 72px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 6, 7, 0.62);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #f7fbfc;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0;
+      min-width: 0;
+      flex: 0 1 auto;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 229, 255, 0.42);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(0, 229, 255, 0.2), transparent 64%),
+        rgba(255, 255, 255, 0.08);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 0 26px rgba(0, 229, 255, 0.32);
+      isolation: isolate;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(126, 242, 200, 0.28);
+      border-left-color: transparent;
+      border-radius: 50%;
+    }
+
+    .brand-text {
+      display: grid;
+      gap: 2px;
+      line-height: 1;
+      min-width: 0;
+    }
+
+    .brand-text small {
+      color: #8fa0a8;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .nav-links a {
+      min-height: 42px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e6ecef;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    main {
+      min-height: 100vh;
+      padding: 136px 72px 72px;
+    }
+
+    .ticket-shell {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .ticket-copy {
+      padding: 18px 0 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #dce3e8;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(126, 242, 200, 0.68);
+    }
+
+    h1 {
+      max-width: 620px;
+      margin-bottom: 22px;
+      font-size: clamp(46px, 7vw, 88px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-shadow: 0 0 24px rgba(0, 229, 255, 0.3);
+    }
+
+    .lead {
+      max-width: 610px;
+      margin-bottom: 32px;
+      color: #d2dade;
+      font-size: 19px;
+      line-height: 1.75;
+    }
+
+    .status-strip {
+      width: min(620px, 100%);
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .status-chip {
+      min-height: 78px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.075);
+      backdrop-filter: blur(14px);
+    }
+
+    .status-chip span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .status-chip b {
+      color: #fff;
+      font-size: 19px;
+      line-height: 1.2;
+    }
+
+    .event-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      overflow: hidden;
+      width: min(620px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .event-strip div {
+      min-height: 96px;
+      padding: 20px;
+      background: rgba(5, 6, 7, 0.48);
+    }
+
+    .event-strip span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .event-strip b {
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .benefit-matrix {
+      width: min(620px, 100%);
+      margin-top: 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .benefit-row {
+      display: grid;
+      grid-template-columns: 1.1fr repeat(3, 0.72fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .benefit-row + .benefit-row {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .benefit-row span,
+    .benefit-row b {
+      min-height: 48px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5, 6, 7, 0.52);
+      color: #dfe7ea;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .benefit-row span:first-child,
+    .benefit-row b:first-child {
+      justify-content: flex-start;
+      color: var(--muted);
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .benefit-head b {
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .ticket-panel,
+    .summary-panel,
+    .ticket-preview {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(8, 11, 14, 0.82);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+    }
+
+    .purchase-column {
+      display: grid;
+      gap: 20px;
+    }
+
+    .ticket-preview {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(226, 23, 199, 0.11)),
+        rgba(8, 11, 14, 0.86);
+    }
+
+    .ticket-preview::before {
+      content: "";
+      position: absolute;
+      inset: -50% auto auto 48%;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.22), transparent 64%);
+      pointer-events: none;
+    }
+
+    .preview-top,
+    .preview-bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .preview-top {
+      align-items: flex-start;
+      margin-bottom: 32px;
+    }
+
+    .preview-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+    }
+
+    .preview-pass {
+      font-size: 31px;
+      line-height: 1;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .preview-code {
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      color: var(--cyan);
+      background: rgba(0, 0, 0, 0.22);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .preview-info {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .preview-info div {
+      min-height: 76px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.36);
+    }
+
+    .preview-info span,
+    .preview-bottom span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .preview-info b,
+    .preview-bottom b {
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .qr-grid {
+      width: 88px;
+      min-width: 88px;
+      height: 88px;
+      padding: 7px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+      border-radius: 8px;
+      background: #edf8fb;
+    }
+
+    .qr-grid i {
+      display: block;
+      border-radius: 2px;
+      background: #061013;
+    }
+
+    .qr-grid i:nth-child(3n),
+    .qr-grid i:nth-child(4n + 1),
+    .qr-grid i:nth-child(7n + 2) {
+      background: transparent;
+    }
+
+    .ticket-panel {
+      padding: 28px;
+    }
+
+    .panel-title {
+      margin-bottom: 18px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .ticket-options {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .ticket-option {
+      position: relative;
+      display: block;
+      cursor: pointer;
+    }
+
+    .ticket-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-body {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      min-height: 106px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.055);
+      transition: 0.24s;
+    }
+
+    .ticket-option input:checked + .option-body {
+      border-color: rgba(0, 229, 255, 0.62);
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(226, 23, 199, 0.12));
+    }
+
+    .option-body strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .option-body span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .price {
+      color: var(--cyan);
+      font-size: 20px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #d8e0e4;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text);
+      font: inherit;
+      padding: 0 14px;
+      outline: none;
+    }
+
+    select option {
+      color: #050607;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(0, 229, 255, 0.58);
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+    }
+
+    .purchase-btn {
+      width: 100%;
+      min-height: 56px;
+      margin-top: 20px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(100deg, var(--pink) 0%, #6a55ff 54%, var(--cyan) 100%);
+      color: #fff;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 18px 44px rgba(0, 229, 255, 0.2), 0 12px 32px rgba(226, 23, 199, 0.18);
+    }
+
+    .summary-panel {
+      margin-top: 20px;
+      padding: 24px;
+    }
+
+    .wallet-panel {
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(8, 11, 14, 0.82);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(18px);
+    }
+
+    .wallet-panel h2 {
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+
+    .wallet-card {
+      display: grid;
+      gap: 10px;
+      min-height: 150px;
+      padding: 18px;
+      border: 1px dashed rgba(0, 229, 255, 0.32);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(226, 23, 199, 0.08));
+    }
+
+    .wallet-card.empty {
+      place-items: center;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.55;
+    }
+
+    .wallet-card strong {
+      font-size: 22px;
+    }
+
+    .wallet-card span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .wallet-delete {
+      min-height: 42px;
+      margin-top: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #f7f8f8;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.24s;
+    }
+
+    .wallet-delete:hover {
+      border-color: rgba(226, 23, 199, 0.44);
+      background: rgba(226, 23, 199, 0.18);
+    }
+
+    .summary-panel h2 {
+      margin-bottom: 18px;
+      font-size: 22px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      color: var(--muted);
+    }
+
+    .summary-row b {
+      color: var(--text);
+      text-align: right;
+    }
+
+    .summary-total {
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .status {
+      min-height: 24px;
+      margin-top: 14px;
+      color: var(--green);
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .modal-card {
+      width: min(520px, 100%);
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(226, 23, 199, 0.1)),
+        #081015;
+      box-shadow: 0 36px 90px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-card h2 {
+      margin-bottom: 12px;
+      font-size: 32px;
+    }
+
+    .modal-card p {
+      color: #c9d3d8;
+      line-height: 1.7;
+    }
+
+    .modal-ticket {
+      margin: 22px 0;
+      padding: 20px;
+      border: 1px dashed rgba(255, 255, 255, 0.24);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.065);
+    }
+
+    .modal-ticket div {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      color: var(--muted);
+    }
+
+    .modal-ticket b {
+      color: #fff;
+      text-align: right;
+    }
+
+    .modal-close {
+      width: 100%;
+      min-height: 50px;
+      border: 0;
+      border-radius: 999px;
+      background: #f4f7f8;
+      color: #050607;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    @media (max-width: 980px) {
+      .ticket-nav {
+        padding: 18px 20px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+      }
+
+      .nav-links a {
+        flex: 0 0 auto;
+        min-height: 40px;
+        padding: 0 14px;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      main {
+        padding: 112px 20px 54px;
+      }
+
+      .ticket-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .event-strip,
+      .status-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .benefit-row {
+        grid-template-columns: 1fr repeat(3, 0.68fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .ticket-nav {
+        min-height: 68px;
+        padding: 14px 16px;
+      }
+
+      .brand {
+        min-width: 0;
+        gap: 10px;
+      }
+
+      .brand-text strong {
+        max-width: 150px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .brand-text small {
+        display: block;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 6px;
+      }
+
+      .nav-links a:first-child,
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      .nav-links a {
+        padding: 0 9px;
+        font-size: 11px;
+      }
+
+      .ticket-panel {
+        padding: 20px;
+      }
+
+      .form-grid,
+      .option-body,
+      .preview-info {
+        grid-template-columns: 1fr;
+      }
+
+      .preview-bottom {
+        display: grid;
+      }
+
+      .benefit-matrix {
+        display: none;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .brand-text strong {
+        max-width: 120px;
+      }
+
+      .brand-text small {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ticket-nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">AI</span>
+      <span class="brand-text"><strong>AI Future Expo</strong><small>Seoul 2026</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about" data-nav="about">전시 소개</a>
+      <a href="index.html#tech" data-nav="tech">기술 보기</a>
+      <a href="exhibitors.html" data-nav="exhibitors">참가기업</a>
+      <a href="directions.html" data-nav="directions">오시는 길</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="ticket-shell">
+      <section class="ticket-copy">
+        <span class="eyebrow">TICKET RESERVATION</span>
+        <h1>AI Future Expo Tickets</h1>
+        <p class="lead" data-copy="lead">2026년 8월 19일부터 21일까지, 코엑스에서 열리는 AI 미래 기술 전시를 가장 먼저 예약하세요. 패스 종류와 수량을 선택하면 예상 금액을 바로 확인할 수 있습니다.</p>
+
+        <div class="status-strip" aria-label="Ticket status">
+          <div class="status-chip"><span>EARLY BIRD</span><b data-copy="earlyValue">예매 시작</b></div>
+          <div class="status-chip"><span>COUNTDOWN</span><b id="d-day">D-000</b></div>
+          <div class="status-chip"><span>LIMITED</span><b data-copy="limitedValue">우선 입장 패스</b></div>
+        </div>
+
+        <div class="event-strip">
+          <div><span>DATE</span><b>2026.08.19 - 08.21</b></div>
+          <div><span>VENUE</span><b>COEX Grand Ballroom & Hall B</b></div>
+          <div><span>OPEN</span><b>10:00 - 18:00</b></div>
+        </div>
+
+        <div class="benefit-matrix" aria-label="Pass benefits comparison">
+          <div class="benefit-row benefit-head"><b>BENEFIT</b><b>VISITOR</b><b>BUSINESS</b><b>PREMIUM</b></div>
+          <div class="benefit-row"><span data-copy="benefitExpo">전시 관람</span><b>YES</b><b>YES</b><b>YES</b></div>
+          <div class="benefit-row"><span data-copy="benefitConference">컨퍼런스 세션</span><b>-</b><b>YES</b><b>YES</b></div>
+          <div class="benefit-row"><span data-copy="benefitBuyer">바이어 매칭</span><b>-</b><b>YES</b><b>YES</b></div>
+          <div class="benefit-row"><span data-copy="benefitPriority">우선 입장</span><b>-</b><b>-</b><b>YES</b></div>
+        </div>
+      </section>
+
+      <section class="purchase-column">
+        <aside class="ticket-preview" aria-label="Live ticket preview">
+          <div class="preview-top"><div><span class="preview-label">LIVE TICKET</span><div class="preview-pass" id="preview-pass">Visitor Pass</div></div><div class="preview-code" id="preview-code">AIX-0819-VIS</div></div>
+          <div class="preview-info"><div><span>NAME</span><b id="preview-name">Guest</b></div><div><span>DATE</span><b id="preview-date">2026.08.19</b></div><div><span>QTY</span><b id="preview-quantity">1매</b></div></div>
+          <div class="preview-bottom"><div><span>TOTAL</span><b id="preview-total">KRW 29,000</b></div><div class="qr-grid" aria-label="QR code style ticket pattern"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </aside>
+
+        <form class="ticket-panel" id="ticket-form">
+          <h2 class="panel-title" data-copy="panelTitle">티켓 구매</h2>
+          <div class="ticket-options">
+            <label class="ticket-option"><input type="radio" name="ticketType" value="visitor" data-label="Visitor Pass" data-price="29000" checked /><span class="option-body"><span><strong>Visitor Pass</strong><span data-copy="visitorDesc">전시 관람, 기술 쇼케이스, 프리뷰 영상존 입장</span></span><b class="price">KRW 29,000</b></span></label>
+            <label class="ticket-option"><input type="radio" name="ticketType" value="business" data-label="Business Pass" data-price="79000" /><span class="option-body"><span><strong>Business Pass</strong><span data-copy="businessDesc">전시 관람, 컨퍼런스 세션, 바이어 매칭 라운지</span></span><b class="price">KRW 79,000</b></span></label>
+            <label class="ticket-option"><input type="radio" name="ticketType" value="premium" data-label="Premium Pass" data-price="149000" /><span class="option-body"><span><strong>Premium Pass</strong><span data-copy="premiumDesc">전체 프로그램, 우선 입장, 네트워킹 리셉션 포함</span></span><b class="price">KRW 149,000</b></span></label>
+          </div>
+
+          <div class="form-grid">
+            <div class="field"><label for="ticket-date" data-copy="visitDate">방문 날짜</label><select id="ticket-date" name="ticketDate"><option value="2026.08.19">2026.08.19</option><option value="2026.08.20">2026.08.20</option><option value="2026.08.21">2026.08.21</option></select></div>
+            <div class="field"><label for="quantity" data-copy="quantity">수량</label><select id="quantity" name="quantity"><option value="1">1매</option><option value="2">2매</option><option value="3">3매</option><option value="4">4매</option><option value="5">5매</option></select></div>
+            <div class="field"><label for="name" data-copy="name">이름</label><input id="name" name="name" type="text" placeholder="홍길동" required /></div>
+            <div class="field"><label for="email" data-copy="email">이메일</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
+            <div class="field full"><label for="purpose" data-copy="purpose">방문 목적</label><select id="purpose" name="purpose"><option data-copy="purposeExpo">전시 관람</option><option data-copy="purposeBusiness">비즈니스 미팅</option><option data-copy="purposeConference">컨퍼런스 참석</option><option data-copy="purposeResearch">교육 및 리서치</option></select></div>
+          </div>
+          <button class="purchase-btn" type="submit" data-copy="submit">구매 정보 확인</button>
+          <p class="status" id="status" role="status"></p>
+        </form>
+
+        <aside class="summary-panel" aria-label="Ticket summary">
+          <h2 data-copy="summaryTitle">주문 요약</h2>
+          <div class="summary-row"><span data-copy="pass">패스</span><b id="summary-pass">Visitor Pass</b></div>
+          <div class="summary-row"><span data-copy="visitDate">방문 날짜</span><b id="summary-date">2026.08.19</b></div>
+          <div class="summary-row"><span data-copy="quantity">수량</span><b id="summary-quantity">1매</b></div>
+          <div class="summary-row"><span data-copy="reservationCode">예약 코드</span><b id="summary-code">AIX-0819-VIS</b></div>
+          <div class="summary-total"><span data-copy="totalLabel">합계</span><b id="summary-total">KRW 29,000</b></div>
+        </aside>
+
+        <aside class="wallet-panel" aria-label="My ticket wallet"><h2 id="wallet-title">My Ticket Wallet</h2><div class="wallet-card empty" id="wallet-card">아직 저장된 티켓이 없습니다.</div></aside>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="success-modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">티켓 정보 확인 완료</h2>
+      <p data-copy="modalDesc">입력하신 정보로 예매 요약을 만들었습니다. 실제 결제 연동 전 데모 페이지입니다.</p>
+      <div class="modal-ticket"><div><span data-copy="pass">패스</span><b id="modal-pass">Visitor Pass</b></div><div><span data-copy="name">이름</span><b id="modal-name">Guest</b></div><div><span data-copy="visitDate">방문 날짜</span><b id="modal-date">2026.08.19</b></div><div><span data-copy="reservationCode">예약 코드</span><b id="modal-code">AIX-0819-VIS</b></div><div><span data-copy="totalLabel">합계</span><b id="modal-total">KRW 29,000</b></div></div>
+      <button class="modal-close" type="button" id="modal-close" data-copy="close">확인</button>
+    </div>
+  </div>
+
+  <script>
+    const copySet = {
+      ko: { title: "티켓 예매 | AI Future Expo 2026", navAbout: "전시 소개", navTech: "기술 보기", navExhibitors: "참가기업", navDirections: "오시는 길", lead: "2026년 8월 19일부터 21일까지, 코엑스에서 열리는 AI 미래 기술 전시를 가장 먼저 예약하세요. 패스 종류와 수량을 선택하면 예상 금액을 바로 확인할 수 있습니다.", earlyValue: "예매 시작", limitedValue: "우선 입장 패스", benefitExpo: "전시 관람", benefitConference: "컨퍼런스 세션", benefitBuyer: "바이어 매칭", benefitPriority: "우선 입장", panelTitle: "티켓 구매", visitorDesc: "전시 관람, 기술 쇼케이스, 프리뷰 영상존 입장", businessDesc: "전시 관람, 컨퍼런스 세션, 바이어 매칭 라운지", premiumDesc: "전체 프로그램, 우선 입장, 네트워킹 리셉션 포함", visitDate: "방문 날짜", quantity: "수량", name: "이름", email: "이메일", purpose: "방문 목적", purposeExpo: "전시 관람", purposeBusiness: "비즈니스 미팅", purposeConference: "컨퍼런스 참석", purposeResearch: "교육 및 리서치", submit: "구매 정보 확인", summaryTitle: "주문 요약", pass: "패스", reservationCode: "예약 코드", totalLabel: "합계", modalDesc: "입력하신 정보로 예매 요약을 만들었습니다. 실제 결제 연동 전 데모 페이지입니다.", close: "확인", walletTitle: "내 티켓 월렛", walletEmpty: "아직 저장된 티켓이 없습니다. 구매 정보 확인을 누르면 이곳에 티켓이 저장됩니다.", walletSaved: "저장된 티켓", walletDelete: "월렛에서 삭제", ticketUnit: "매", status: (pass, qty) => `${pass} ${qty}매 구매 정보가 확인되었습니다. 결제 연동 전 데모 페이지입니다.` },
+      en: { title: "Ticket | AI Future Expo 2026", navAbout: "About", navTech: "Technology", navExhibitors: "Exhibitors", navDirections: "Directions", lead: "Reserve your visit to AI Future Expo 2026 at COEX, August 19-21. Select a pass and quantity to preview the estimated total instantly.", earlyValue: "Open Now", limitedValue: "Priority Pass", benefitExpo: "Expo Access", benefitConference: "Conference Sessions", benefitBuyer: "Buyer Matching", benefitPriority: "Priority Entry", panelTitle: "Buy Tickets", visitorDesc: "Expo access, tech showcases, and preview video zone", businessDesc: "Expo access, conference sessions, and buyer matching lounge", premiumDesc: "Full program access, priority entry, and networking reception", visitDate: "Visit Date", quantity: "Quantity", name: "Name", email: "Email", purpose: "Visit Purpose", purposeExpo: "Expo Visit", purposeBusiness: "Business Meeting", purposeConference: "Conference", purposeResearch: "Education / Research", submit: "Review Purchase", summaryTitle: "Order Summary", pass: "Pass", reservationCode: "Reservation Code", totalLabel: "Total", modalDesc: "A reservation summary has been created from your information. This is a demo page before payment integration.", close: "Confirm", walletTitle: "My Ticket Wallet", walletEmpty: "No saved ticket yet. Review purchase information to save a ticket here.", walletSaved: "Saved Ticket", walletDelete: "Remove from Wallet", ticketUnit: "ticket", status: (pass, qty) => `${pass} x ${qty} has been reviewed. This is a demo page before payment integration.` }
+    };
+
+    const lang = localStorage.getItem("expoLanguage") === "en" ? "en" : "ko";
+    const t = copySet[lang];
+    document.documentElement.lang = lang;
+    document.title = t.title;
+    document.querySelector('[data-nav="about"]').textContent = t.navAbout;
+    document.querySelector('[data-nav="tech"]').textContent = t.navTech;
+    document.querySelector('[data-nav="exhibitors"]').textContent = t.navExhibitors;
+    document.querySelector('[data-nav="directions"]').textContent = t.navDirections;
+    document.querySelectorAll("[data-copy]").forEach((el) => { const key = el.dataset.copy; if (typeof t[key] === "string") el.textContent = t[key]; });
+
+    const form = document.querySelector("#ticket-form");
+    const ticketInputs = document.querySelectorAll("input[name='ticketType']");
+    const dateInput = document.querySelector("#ticket-date");
+    const quantityInput = document.querySelector("#quantity");
+    const nameInput = document.querySelector("#name");
+    const status = document.querySelector("#status");
+    const modal = document.querySelector("#success-modal");
+    const walletCard = document.querySelector("#wallet-card");
+    const walletTitle = document.querySelector("#wallet-title");
+
+    const selectedTicket = () => document.querySelector("input[name='ticketType']:checked");
+    const formatPrice = (value) => `KRW ${Number(value).toLocaleString("ko-KR")}`;
+    const formatQty = (qty) => lang === "ko" ? `${qty}${t.ticketUnit}` : `${qty} ${t.ticketUnit}${qty > 1 ? "s" : ""}`;
+    const codeFor = (ticket, date) => `AIX-${date.slice(5).replace(".", "")}-${ticket.value.slice(0, 3).toUpperCase()}`;
+
+    function currentTicket() {
+      const ticket = selectedTicket();
+      const qty = Number(quantityInput.value || 1);
+      const date = dateInput.value;
+      const total = Number(ticket.dataset.price) * qty;
+      return { pass: ticket.dataset.label, qty, date, total, code: codeFor(ticket, date), name: nameInput.value.trim() || "Guest" };
+    }
+
+    function updatePreview() {
+      const data = currentTicket();
+      document.querySelector("#preview-pass").textContent = data.pass;
+      document.querySelector("#preview-code").textContent = data.code;
+      document.querySelector("#preview-name").textContent = data.name;
+      document.querySelector("#preview-date").textContent = data.date;
+      document.querySelector("#preview-quantity").textContent = formatQty(data.qty);
+      document.querySelector("#preview-total").textContent = formatPrice(data.total);
+      document.querySelector("#summary-pass").textContent = data.pass;
+      document.querySelector("#summary-date").textContent = data.date;
+      document.querySelector("#summary-quantity").textContent = formatQty(data.qty);
+      document.querySelector("#summary-code").textContent = data.code;
+      document.querySelector("#summary-total").textContent = formatPrice(data.total);
+    }
+
+    function renderWallet() {
+      walletTitle.textContent = t.walletTitle;
+      const saved = JSON.parse(localStorage.getItem("expoTicket") || "null");
+      if (!saved) { walletCard.className = "wallet-card empty"; walletCard.textContent = t.walletEmpty; return; }
+      walletCard.className = "wallet-card";
+      walletCard.innerHTML = `<strong>${t.walletSaved}</strong><span>${saved.pass} / ${saved.date} / ${formatQty(saved.qty)}</span><b>${saved.code}</b><button class="wallet-delete" type="button" id="wallet-delete">${t.walletDelete}</button>`;
+      document.querySelector("#wallet-delete").addEventListener("click", () => { localStorage.removeItem("expoTicket"); renderWallet(); });
+    }
+
+    [dateInput, quantityInput, nameInput, ...ticketInputs].forEach((el) => el.addEventListener("input", updatePreview));
+    [dateInput, quantityInput, ...ticketInputs].forEach((el) => el.addEventListener("change", updatePreview));
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = currentTicket();
+      localStorage.setItem("expoTicket", JSON.stringify(data));
+      status.textContent = t.status(data.pass, data.qty);
+      document.querySelector("#modal-pass").textContent = data.pass;
+      document.querySelector("#modal-name").textContent = data.name;
+      document.querySelector("#modal-date").textContent = data.date;
+      document.querySelector("#modal-code").textContent = data.code;
+      document.querySelector("#modal-total").textContent = formatPrice(data.total);
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+      renderWallet();
+    });
+
+    document.querySelector("#modal-close").addEventListener("click", () => { modal.classList.remove("show"); modal.setAttribute("aria-hidden", "true"); });
+    document.querySelector("#d-day").textContent = `D-${Math.max(0, Math.ceil((new Date("2026-08-19T00:00:00+09:00") - new Date()) / 86400000))}`;
+    updatePreview();
+    renderWallet();
+  </script>
+</body>
+</html>
+
+

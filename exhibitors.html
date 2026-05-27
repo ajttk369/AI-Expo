@@ -1,0 +1,936 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>참가기업 | AI Future Expo 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #050607;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-strong: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.14);
+      --text: #f7f8f8;
+      --muted: #a8adb2;
+      --cyan: #00e5ff;
+      --pink: #e217c7;
+      --green: #7ef2c8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(0, 229, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(226, 23, 199, 0.12), transparent 28%),
+        linear-gradient(180deg, #050607 0%, #071018 100%);
+      font-family: "Pretendard", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 72px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(5, 6, 7, 0.62);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #f7fbfc;
+      font-size: 22px;
+      font-weight: 900;
+      min-width: 0;
+      flex: 0 1 auto;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 229, 255, 0.42);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(0, 229, 255, 0.2), transparent 64%),
+        rgba(255, 255, 255, 0.08);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 0 26px rgba(0, 229, 255, 0.32);
+      isolation: isolate;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(126, 242, 200, 0.28);
+      border-left-color: transparent;
+      border-radius: 50%;
+    }
+
+    .brand-text {
+      display: grid;
+      gap: 2px;
+      line-height: 1;
+      min-width: 0;
+    }
+
+    .brand-text small {
+      color: #8fa0a8;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .nav-links a {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e6ecef;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .nav-links a.active {
+      border-color: rgba(0, 229, 255, 0.46);
+      background: rgba(0, 229, 255, 0.14);
+      color: var(--cyan);
+    }
+
+    main {
+      padding: 136px 72px 76px;
+    }
+
+    .hero {
+      width: min(1280px, 100%);
+      margin: 0 auto 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.72fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #dce3e8;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(126, 242, 200, 0.68);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 22px;
+      font-size: clamp(46px, 7vw, 88px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-shadow: 0 0 24px rgba(0, 229, 255, 0.3);
+    }
+
+    .lead {
+      max-width: 680px;
+      color: #d2dade;
+      font-size: 18px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    .hero-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(16px);
+    }
+
+    .stat {
+      min-height: 88px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.42);
+    }
+
+    .stat span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .stat b {
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .tools {
+      width: min(1280px, 100%);
+      margin: 0 auto 18px;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.84fr) 1fr;
+      gap: 14px;
+    }
+
+    .search-box,
+    .filter-bar {
+      min-height: 58px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 0 18px;
+      color: #fff;
+      outline: none;
+    }
+
+    .search-box:focus {
+      border-color: rgba(0, 229, 255, 0.56);
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      overflow-x: auto;
+    }
+
+    .filter-btn {
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: transparent;
+      color: #cdd6da;
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: 0.22s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      border-color: rgba(0, 229, 255, 0.38);
+      background: rgba(0, 229, 255, 0.14);
+      color: var(--cyan);
+    }
+
+    .company-shell {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .company-card {
+      min-width: 0;
+      min-height: 238px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.078), rgba(255, 255, 255, 0.032));
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24);
+    }
+
+    .company-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .company-logo {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0, 229, 255, 0.24);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle, rgba(0, 229, 255, 0.18), transparent 65%),
+        rgba(255, 255, 255, 0.06);
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .booth {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 10px;
+      border: 1px solid rgba(126, 242, 200, 0.22);
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(126, 242, 200, 0.07);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .company-card h2 {
+      font-size: 22px;
+      line-height: 1.32;
+      word-break: keep-all;
+    }
+
+    .company-card p {
+      flex: 1;
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag-row span {
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 9px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      color: #dce6ea;
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .company-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .company-actions a,
+    .company-actions button {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #edf3f5;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .company-actions a {
+      border-color: rgba(0, 229, 255, 0.34);
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--cyan);
+    }
+
+    .company-actions button.saved {
+      border-color: rgba(126, 242, 200, 0.55);
+      background: rgba(126, 242, 200, 0.18);
+      color: var(--green);
+      box-shadow: 0 0 18px rgba(126, 242, 200, 0.12);
+    }
+
+    .side-panel {
+      position: sticky;
+      top: 112px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .alert-card,
+    .map-card,
+    .saved-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .alert-card h2,
+    .map-card h2,
+    .saved-card h2 {
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .alert-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .alert-form {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .alert-form input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.42);
+      color: #fff;
+      outline: none;
+    }
+
+    .alert-form button {
+      min-height: 44px;
+      border: 1px solid rgba(0, 229, 255, 0.34);
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--cyan);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .alert-status {
+      min-height: 22px;
+      margin-top: 10px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .booth-status {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.42);
+    }
+
+    .status-row b {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .status-row span {
+      color: #dce6ea;
+      line-height: 1.45;
+      word-break: keep-all;
+    }
+
+    .map-card p,
+    .saved-card p,
+    .saved-list {
+      color: var(--muted);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .saved-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .saved-list span {
+      display: block;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.38);
+      color: #dce6ea;
+      font-size: 13px;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      min-height: 160px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .company-modal {
+      width: min(620px, 100%);
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(226, 23, 199, 0.09)),
+        #081015;
+      box-shadow: 0 36px 90px rgba(0, 0, 0, 0.5);
+    }
+
+    .company-modal h2 {
+      margin-bottom: 12px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    .company-modal p {
+      color: var(--muted);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    .modal-info {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .modal-info div {
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      background: rgba(5, 6, 7, 0.36);
+    }
+
+    .modal-info span {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .modal-info b {
+      color: #fff;
+      line-height: 1.35;
+    }
+
+    .modal-close {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid rgba(0, 229, 255, 0.34);
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--cyan);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .tools,
+      .company-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .company-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .side-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page-nav {
+        padding: 14px 16px;
+      }
+
+      .brand {
+        min-width: 0;
+        font-size: 17px;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+      }
+
+      .brand-text strong {
+        max-width: 150px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .brand-text small {
+        display: block;
+      }
+
+      .nav-links {
+        gap: 6px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links a {
+        flex: 0 0 auto;
+        min-height: 38px;
+        padding: 0 10px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      main {
+        padding: 104px 16px 54px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .hero-panel,
+      .company-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .company-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .nav-links a:first-child {
+        display: none;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+      }
+
+      .brand-text strong {
+        max-width: 120px;
+      }
+
+      .nav-links a {
+        padding: 0 9px;
+        font-size: 11px;
+      }
+
+      .hero-panel,
+      .alert-card,
+      .map-card,
+      .saved-card,
+      .company-card {
+        padding: 16px;
+      }
+
+      .status-row,
+      .modal-info {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .brand-text small {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="page-nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">AI</span>
+      <span class="brand-text"><strong>AI Future Expo</strong><small>Seoul 2026</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about" data-i18n="navHome">홈</a>
+      <a class="active" href="exhibitors.html" data-i18n="navExhibitors">참가기업</a>
+      <a href="directions.html" data-i18n="navDirections">오시는 길</a>
+      <a href="ticket.html" data-i18n="navTicket">티켓</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow" data-i18n="eyebrow">EXHIBITOR DIRECTORY</span>
+        <h1 data-i18n-html="title">참가기업<br>안내</h1>
+        <p class="lead" data-i18n="lead">AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 지금은 시안용 샘플 구역으로 구성했습니다.</p>
+      </div>
+      <div class="hero-panel" aria-label="Exhibitor summary">
+        <div class="stat"><span data-i18n="statCompanyLabel">참가기업</span><b data-count="company">6</b></div>
+        <div class="stat"><span data-i18n="statBoothLabel">부스 정보</span><b>TBA</b></div>
+        <div class="stat"><span data-i18n="statCategoryLabel">기술 분야</span><b>6</b></div>
+        <div class="stat"><span data-i18n="statMeetLabel">상담 가능</span><b>TBA</b></div>
+      </div>
+    </section>
+
+    <section class="tools" aria-label="Company search and filters">
+      <input class="search-box" id="search" type="search" autocomplete="off" data-i18n-placeholder="searchPlaceholder" placeholder="기업명, 기술, 분야 검색" />
+      <div class="filter-bar" id="filters"></div>
+    </section>
+
+    <section class="company-shell">
+      <div class="company-grid" id="company-grid"></div>
+      <aside class="side-panel">
+        <article class="alert-card">
+          <h2 data-i18n="alertTitle">참가기업 공개 알림</h2>
+          <p data-i18n="alertDesc">실제 참가기업 리스트가 공개되면 알림을 받을 이메일을 등록하세요.</p>
+          <form class="alert-form" id="alert-form">
+            <input id="alert-name" type="text" autocomplete="name" data-i18n-placeholder="alertNamePlaceholder" placeholder="이름" />
+            <input id="alert-email" type="email" autocomplete="email" data-i18n-placeholder="alertEmailPlaceholder" placeholder="이메일" required />
+            <button type="submit" data-i18n="alertButton">알림 신청</button>
+          </form>
+          <div class="alert-status" id="alert-status"></div>
+        </article>
+
+        <article class="map-card">
+          <h2 data-i18n="mapTitle">부스 배치 안내</h2>
+          <div class="booth-status">
+            <div class="status-row"><b data-i18n="layoutStatusLabel">STATUS</b><span data-i18n="layoutStatusValue">최종 참가기업 확정 후 공개 예정</span></div>
+            <div class="status-row"><b data-i18n="layoutInfoLabel">INFO</b><span data-i18n="layoutInfoValue">기업명, 부스번호, 전시품목, 상담 가능 여부가 함께 표시됩니다.</span></div>
+          </div>
+          <p data-i18n="mapDesc">실제 전시장 구역은 확정 자료가 있을 때 넣는 것이 맞습니다. 지금은 임시 맵 대신 공개 상태를 안내합니다.</p>
+        </article>
+
+        <article class="saved-card">
+          <h2 data-i18n="savedTitle">관심 참가기업</h2>
+          <p data-i18n="savedDesc">카드의 저장 버튼을 눌러 방문 후보를 모아보세요.</p>
+          <div class="saved-list" id="saved-list"></div>
+        </article>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="company-modal" aria-hidden="true">
+    <article class="company-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+      <div class="modal-info">
+        <div><span data-i18n="modalBoothLabel">부스</span><b id="modal-booth"></b></div>
+        <div><span data-i18n="modalCategoryLabel">분야</span><b id="modal-category"></b></div>
+        <div><span data-i18n="modalProductLabel">전시품목</span><b id="modal-product"></b></div>
+        <div><span data-i18n="modalMeetingLabel">상담</span><b id="modal-meeting"></b></div>
+      </div>
+      <button class="modal-close" type="button" id="modal-close" data-i18n="modalClose">닫기</button>
+    </article>
+  </div>
+
+  <script>
+    const companies = [
+      { id: "medical", name: "AI Medical Exhibitor", ko: "AI 의료 샘플 기업", category: "medical", booth: "확정 예정", tags: ["AI Medical", "Healthcare"], descKo: "진단 보조, 병원 운영, 스마트 헬스케어 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for diagnostics, hospital operations, and smart healthcare will appear here.", productKo: "의료 AI 솔루션", productEn: "Medical AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "robotics", name: "Robotics Exhibitor", ko: "로보틱스 샘플 기업", category: "robotics", booth: "확정 예정", tags: ["Robotics", "Physical AI"], descKo: "협동로봇, 서비스 로봇, 산업 자동화 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for collaborative robots, service robots, and automation will appear here.", productKo: "로봇/자동화 데모", productEn: "Robot and automation demo", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "city", name: "Smart City Exhibitor", ko: "스마트시티 샘플 기업", category: "city", booth: "확정 예정", tags: ["Smart City", "Urban AI"], descKo: "교통, 안전, 에너지, 도시 데이터 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for traffic, safety, energy, and urban data will appear here.", productKo: "스마트시티 플랫폼", productEn: "Smart city platform", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "device", name: "Future Device Exhibitor", ko: "Future Device 샘플 기업", category: "device", booth: "확정 예정", tags: ["Wearable", "On-device AI"], descKo: "웨어러블, 스마트홈, 온디바이스 AI 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for wearables, smart home, and on-device AI will appear here.", productKo: "AI 디바이스 체험", productEn: "AI device experience", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "mobility", name: "Mobility Exhibitor", ko: "모빌리티 샘플 기업", category: "mobility", booth: "확정 예정", tags: ["Mobility", "Autonomous"], descKo: "자율주행, 물류, 커넥티드 교통 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for autonomous driving, logistics, and connected transport will appear here.", productKo: "모빌리티 AI 솔루션", productEn: "Mobility AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "security", name: "Cyber AI Exhibitor", ko: "보안 AI 샘플 기업", category: "security", booth: "확정 예정", tags: ["Security", "Data Trust"], descKo: "생성형 AI 보안, 데이터 신뢰, 거버넌스 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for generative AI security, data trust, and governance will appear here.", productKo: "보안/데이터 신뢰 솔루션", productEn: "Security and data trust solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" }
+    ];
+
+    const copy = {
+      ko: { navHome: "홈", navExhibitors: "참가기업", navDirections: "오시는 길", navTicket: "티켓", eyebrow: "EXHIBITOR DIRECTORY", title: "참가기업<br>안내", lead: "AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 지금은 시안용 샘플 구역으로 구성했습니다.", statCompanyLabel: "참가기업", statBoothLabel: "부스 정보", statCategoryLabel: "기술 분야", statMeetLabel: "상담 가능", searchPlaceholder: "기업명, 기술, 분야 검색", mapTitle: "부스 배치 안내", layoutStatusLabel: "STATUS", layoutStatusValue: "최종 참가기업 확정 후 공개 예정", layoutInfoLabel: "INFO", layoutInfoValue: "기업명, 부스번호, 전시품목, 상담 가능 여부가 함께 표시됩니다.", mapDesc: "실제 전시장 구역은 확정 자료가 있을 때 넣는 것이 맞습니다. 지금은 임시 맵 대신 공개 상태를 안내합니다.", savedTitle: "관심 참가기업", savedDesc: "카드의 저장 버튼을 눌러 방문 후보를 모아보세요.", emptySaved: "아직 저장한 기업이 없습니다.", alertTitle: "참가기업 공개 알림", alertDesc: "실제 참가기업 리스트가 공개되면 알림을 받을 이메일을 등록하세요.", alertNamePlaceholder: "이름", alertEmailPlaceholder: "이메일", alertButton: "알림 신청", alertDone: "알림 신청이 저장되었습니다. 실제 발송 연동 전까지는 브라우저에만 보관됩니다.", detail: "상세보기", save: "저장", saved: "저장됨", empty: "조건에 맞는 참가기업이 없습니다.", modalBoothLabel: "부스", modalCategoryLabel: "분야", modalProductLabel: "전시품목", modalMeetingLabel: "상담", modalClose: "닫기", filters: { all: "전체", medical: "AI 의료", robotics: "로보틱스", city: "스마트시티", device: "Future Device", mobility: "모빌리티", security: "보안 AI" } },
+      en: { navHome: "Home", navExhibitors: "Exhibitors", navDirections: "Directions", navTicket: "Ticket", eyebrow: "EXHIBITOR DIRECTORY", title: "Exhibitor<br>Directory", lead: "Confirmed exhibitors will be listed by category once official materials are released. This page currently uses sample placeholders.", statCompanyLabel: "Exhibitors", statBoothLabel: "Booth Info", statCategoryLabel: "Categories", statMeetLabel: "Meetings", searchPlaceholder: "Search company, tech, or category", mapTitle: "Booth Layout", layoutStatusLabel: "STATUS", layoutStatusValue: "To be announced after final exhibitor confirmation", layoutInfoLabel: "INFO", layoutInfoValue: "Company name, booth number, exhibit item, and meeting availability will appear together.", mapDesc: "The real exhibition layout should be added only when confirmed materials are available. This page shows the public status instead of a temporary map.", savedTitle: "Saved Exhibitors", savedDesc: "Use the save button to collect companies for your visit plan.", emptySaved: "No saved exhibitors yet.", alertTitle: "Exhibitor Release Alert", alertDesc: "Register your email to be notified when the official exhibitor list is released.", alertNamePlaceholder: "Name", alertEmailPlaceholder: "Email", alertButton: "Request Alert", alertDone: "Alert request saved locally. Email delivery is not connected in this demo.", detail: "Details", save: "Save", saved: "Saved", empty: "No exhibitors match your filters.", modalBoothLabel: "Booth", modalCategoryLabel: "Category", modalProductLabel: "Exhibit", modalMeetingLabel: "Meeting", modalClose: "Close", filters: { all: "All", medical: "AI Medical", robotics: "Robotics", city: "Smart City", device: "Future Device", mobility: "Mobility", security: "Cyber AI" } }
+    };
+
+    const state = { lang: localStorage.getItem("expoLanguage") === "en" ? "en" : "ko", filter: "all", query: "", saved: JSON.parse(localStorage.getItem("savedExhibitors") || "[]") };
+    const t = () => copy[state.lang];
+    const grid = document.querySelector("#company-grid");
+    const filters = document.querySelector("#filters");
+    const search = document.querySelector("#search");
+    const savedList = document.querySelector("#saved-list");
+    const modal = document.querySelector("#company-modal");
+
+    function companyName(company) { return state.lang === "ko" ? company.ko : company.name; }
+    function categoryLabel(company) { return t().filters[company.category] || company.category; }
+    function isSaved(id) { return state.saved.includes(id); }
+
+    function renderFilters() {
+      filters.innerHTML = Object.entries(t().filters).map(([key, label]) => `<button class="filter-btn ${state.filter === key ? "active" : ""}" type="button" data-filter="${key}">${label}</button>`).join("");
+    }
+
+    function filteredCompanies() {
+      const q = state.query.trim().toLowerCase();
+      return companies.filter((company) => {
+        const matchFilter = state.filter === "all" || company.category === state.filter;
+        const haystack = [company.name, company.ko, company.category, ...company.tags].join(" ").toLowerCase();
+        return matchFilter && (!q || haystack.includes(q));
+      });
+    }
+
+    function renderCompanies() {
+      const items = filteredCompanies();
+      document.querySelector('[data-count="company"]').textContent = companies.length;
+      if (!items.length) { grid.innerHTML = `<div class="empty">${t().empty}</div>`; return; }
+      grid.innerHTML = items.map((company) => {
+        const saved = isSaved(company.id);
+        return `<article class="company-card"><div class="company-top"><div class="company-logo">AI</div><span class="booth">${company.booth}</span></div><h2>${companyName(company)}</h2><p>${state.lang === "ko" ? company.descKo : company.descEn}</p><div class="tag-row">${company.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><div class="company-actions"><button type="button" data-detail="${company.id}">${t().detail}</button><button class="${saved ? "saved" : ""}" type="button" data-save="${company.id}">${saved ? t().saved : t().save}</button></div></article>`;
+      }).join("");
+    }
+
+    function renderSaved() {
+      const items = companies.filter((company) => isSaved(company.id));
+      savedList.innerHTML = items.length ? items.map((company) => `<button type="button" data-detail="${company.id}">${companyName(company)}</button>`).join("") : `<span>${t().emptySaved}</span>`;
+    }
+
+    function applyText() {
+      document.documentElement.lang = state.lang;
+      document.title = state.lang === "ko" ? "참가기업 | AI Future Expo 2026" : "Exhibitors | AI Future Expo 2026";
+      document.querySelectorAll("[data-i18n]").forEach((el) => { const value = t()[el.dataset.i18n]; if (value) el.textContent = value; });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => { const value = t()[el.dataset.i18nHtml]; if (value) el.innerHTML = value; });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => { const value = t()[el.dataset.i18nPlaceholder]; if (value) el.placeholder = value; });
+      renderFilters(); renderCompanies(); renderSaved();
+    }
+
+    function openModal(id) {
+      const company = companies.find((item) => item.id === id);
+      if (!company) return;
+      document.querySelector("#modal-title").textContent = companyName(company);
+      document.querySelector("#modal-desc").textContent = state.lang === "ko" ? company.descKo : company.descEn;
+      document.querySelector("#modal-booth").textContent = company.booth;
+      document.querySelector("#modal-category").textContent = categoryLabel(company);
+      document.querySelector("#modal-product").textContent = state.lang === "ko" ? company.productKo : company.productEn;
+      document.querySelector("#modal-meeting").textContent = state.lang === "ko" ? company.meetingKo : company.meetingEn;
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    document.addEventListener("click", (event) => {
+      const detailButton = event.target.closest("[data-detail]");
+      const saveButton = event.target.closest("[data-save]");
+      const filterButton = event.target.closest("[data-filter]");
+      if (detailButton) openModal(detailButton.dataset.detail);
+      if (saveButton) {
+        const id = saveButton.dataset.save;
+        state.saved = isSaved(id) ? state.saved.filter((item) => item !== id) : [...state.saved, id];
+        localStorage.setItem("savedExhibitors", JSON.stringify(state.saved));
+        renderCompanies(); renderSaved();
+      }
+      if (filterButton) { state.filter = filterButton.dataset.filter; renderFilters(); renderCompanies(); }
+    });
+
+    search.addEventListener("input", () => { state.query = search.value; renderCompanies(); });
+    document.querySelector("#modal-close").addEventListener("click", () => { modal.classList.remove("show"); modal.setAttribute("aria-hidden", "true"); });
+    document.querySelector("#alert-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      localStorage.setItem("exhibitorAlertRequest", JSON.stringify({ name: document.querySelector("#alert-name").value, email: document.querySelector("#alert-email").value }));
+      document.querySelector("#alert-status").textContent = t().alertDone;
+    });
+
+    applyText();
+  </script>
+</body>
+</html>
+
+
