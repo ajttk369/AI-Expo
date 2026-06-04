@@ -194,6 +194,35 @@ main{
   color:var(--cyan);
 }
 
+.detail-lang-switch{
+  display:inline-flex;
+  gap:6px;
+  flex:0 0 auto;
+  padding:4px;
+  border:1px solid rgba(255,255,255,0.13);
+  border-radius:999px;
+  background:rgba(255,255,255,0.07);
+}
+
+.detail-lang-switch button{
+  min-width:42px;
+  min-height:36px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#d7e2e6;
+  font:inherit;
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.detail-lang-switch button.active{
+  background:rgba(0,229,255,0.18);
+  color:var(--cyan);
+  box-shadow:0 0 18px rgba(0,229,255,0.18);
+}
+
 .detail-grid{
   margin-top:40px;
   display:grid;
@@ -237,6 +266,14 @@ main{
 .detail-extra h2{
   margin-bottom:18px;
   font-size:24px;
+}
+
+.detail-video-desc{
+  max-width:720px;
+  margin:-4px 0 18px;
+  color:var(--muted);
+  line-height:1.7;
+  word-break:keep-all;
 }
 
 .location-chip{
@@ -740,6 +777,18 @@ main{
     width:100%;
   }
 
+  .detail-lang-switch{
+    display:inline-flex;
+    width:auto;
+    padding:3px;
+  }
+
+  .detail-lang-switch button{
+    min-width:38px;
+    min-height:34px;
+    font-size:12px;
+  }
+
   .detail-hero img{
     height:360px;
   }
@@ -766,10 +815,42 @@ main{
 @media(max-width:520px){
   .detail-nav{
     padding:14px 16px;
+    flex-wrap:wrap;
+    row-gap:10px;
+  }
+
+  .brand{
+    flex:1 1 100%;
+    justify-content:flex-start;
+  }
+
+  .brand::after{
+    content:"SEOUL 2026";
+    margin-left:auto;
+    min-height:30px;
+    display:inline-flex;
+    align-items:center;
+    padding:0 11px;
+    border:1px solid rgba(0,229,255,0.22);
+    border-radius:999px;
+    background:rgba(0,229,255,0.09);
+    color:#9ceeff;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:0.12em;
   }
 
   .brand b{
-    max-width:150px;
+    max-width:none;
+  }
+
+  .detail-links{
+    width:100%;
+    justify-content:space-between;
+  }
+
+  main{
+    padding-top:132px;
   }
 
   .back-link{
@@ -791,10 +872,37 @@ main{
   }
 
   .brand b{
-    max-width:132px;
+    max-width:none;
+  }
+
+  .brand::after{
+    min-height:28px;
+    padding:0 9px;
+    font-size:9px;
+    letter-spacing:0.08em;
   }
 
   .back-link.secondary{
     display:none;
+  }
+
+  .detail-links{
+    gap:6px;
+  }
+
+  .detail-lang-switch{
+    gap:3px;
+    padding:3px;
+  }
+
+  .detail-lang-switch button{
+    min-width:31px;
+    min-height:30px;
+    font-size:12px;
+  }
+
+  .back-link{
+    min-height:36px;
+    padding:0 10px;
   }
 }

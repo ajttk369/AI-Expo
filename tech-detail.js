@@ -5,6 +5,10 @@
     href: "tech-ai-medical.html",
     eyebrow: "AI MEDICAL",
     related: ["cyber", "device", "robotics"],
+    videos: {
+      ko: "videos/메디컬 (한글+배경음악).mp4",
+      en: "videos/메디컬 (영어+배경음악).mp4"
+    },
     ko: {
       title: "미래 병원을 바꾸는 AI 진단과 케어",
       desc: "AI 영상 판독, 스마트 헬스케어, 병원 운영 자동화까지 의료 현장에서 쓰이는 기술 흐름을 한눈에 확인합니다.",
@@ -34,6 +38,10 @@
     href: "tech-robotics.html",
     eyebrow: "ROBOTICS",
     related: ["mobility", "device", "city"],
+    videos: {
+      ko: "videos/로보틱스 (한글 +배경음악).mp4",
+      en: "videos/로보틱스(영어+배경음악).mp4"
+    },
     ko: {
       title: "사람과 함께 일하는 차세대 로봇 기술",
       desc: "제조, 서비스, 물류 현장에서 실제로 움직이는 로봇과 AI 자동화 기술을 가까이에서 확인합니다.",
@@ -63,6 +71,10 @@
     href: "tech-smart-city.html",
     eyebrow: "SMART CITY",
     related: ["mobility", "cyber", "medical"],
+    videos: {
+      ko: "videos/스마트 시티 (한글+배경음악).mp4",
+      en: "videos/스마트 시티 (영어+ 배경음악).mp4"
+    },
     ko: {
       title: "도시 전체가 연결되는 AI 인프라",
       desc: "교통, 에너지, 안전, 행정 데이터를 연결해 도시 운영을 더 똑똑하게 만드는 스마트시티 기술 구역입니다.",
@@ -92,6 +104,10 @@
     href: "tech-future-device.html",
     eyebrow: "FUTURE DEVICE",
     related: ["medical", "robotics", "cyber"],
+    videos: {
+      ko: "videos/미래 디바이스(한글+배경음악).mp4",
+      en: "videos/미래 디바이스(영어 + 배경음악).mp4"
+    },
     ko: {
       title: "몸에 가까워지는 차세대 AI 디바이스",
       desc: "웨어러블, 온디바이스 AI, 차세대 인터페이스가 생활과 산업 경험을 어떻게 바꾸는지 보여줍니다.",
@@ -121,6 +137,10 @@
     href: "tech-mobility.html",
     eyebrow: "MOBILITY",
     related: ["city", "robotics", "cyber"],
+    videos: {
+      ko: "videos/모빌리티 (한글+배경음악).mp4",
+      en: "videos/모빌리티 (영어+배경음악).mp4"
+    },
     ko: {
       title: "자율주행과 연결 교통의 새로운 패러다임",
       desc: "자율주행, 커넥티드 교통, 미래 물류까지 AI가 이동 경험을 어떻게 바꾸는지 확인합니다.",
@@ -150,6 +170,10 @@
     href: "tech-cyber-ai.html",
     eyebrow: "CYBER AI",
     related: ["city", "medical", "device"],
+    videos: {
+      ko: "videos/사이버 AI(한글+배경음악).mp4",
+      en: "videos/사이버 AI(영어+배경음악).mp4"
+    },
     ko: {
       title: "생성형 AI 시대의 보안과 데이터 신뢰",
       desc: "데이터 보호, 위협 탐지, 생성형 AI 거버넌스까지 미래 디지털 신뢰를 위한 기술을 탐색합니다.",
@@ -181,6 +205,8 @@ const uiCopy = {
     back: "기술 목록",
     ticket: "티켓 예매",
     visitInfo: "관람 정보",
+    videoPreview: "기술 프리뷰 영상",
+    videoDesc: "현재 선택한 언어에 맞는 기술 소개 영상이 재생됩니다.",
     location: "전시장 위치",
     demos: "체험 가능 항목",
     scenario: "체험 시나리오",
@@ -211,6 +237,8 @@ const uiCopy = {
     back: "Tech List",
     ticket: "Buy Tickets",
     visitInfo: "Visit Info",
+    videoPreview: "Technology Preview Video",
+    videoDesc: "The preview video switches based on the selected language.",
     location: "Location",
     demos: "Available Experiences",
     scenario: "Experience Scenario",
@@ -285,6 +313,21 @@ favoriteButton.addEventListener("click", () => {
   favoriteButton.textContent = next.includes(pageKey) ? copy.favoriteOn : copy.favoriteOff;
 });
 
+const langSwitch = document.createElement("div");
+langSwitch.className = "detail-lang-switch";
+langSwitch.setAttribute("aria-label", "Language selector");
+langSwitch.innerHTML = `
+  <button type="button" data-lang="ko" class="${lang === "ko" ? "active" : ""}">KO</button>
+  <button type="button" data-lang="en" class="${lang === "en" ? "active" : ""}">EN</button>
+`;
+document.querySelector(".detail-links")?.prepend(langSwitch);
+langSwitch.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-lang]");
+  if (!button) return;
+  localStorage.setItem("expoLanguage", button.dataset.lang);
+  window.location.reload();
+});
+
 function section(title, html) {
   const el = document.createElement("section");
   el.className = "detail-extra";
@@ -293,9 +336,11 @@ function section(title, html) {
 }
 
 const main = document.querySelector("main");
+const videoSrc = detail.videos?.[lang] || detail.videos?.ko;
 if (main) {
   main.append(
     section(ui.visitInfo, `<div class="visit-info"><article><strong>${ui.location}</strong><span>${copy.location}</span></article><article><strong>${ui.duration}</strong><span>${ui.durationValue}</span></article><article><strong>${ui.audience}</strong><span>${ui.audienceValue[pageKey]}</span></article></div>`),
+    section(ui.videoPreview, `<p class="detail-video-desc">${ui.videoDesc}</p><div class="detail-video"><video controls preload="metadata" playsinline><source src="${videoSrc}" type="video/mp4"></video></div>`),
     section(ui.demos, `<div class="demo-list">${copy.cards.map((card, i) => `<article><b>${String(i + 1).padStart(2, "0")}</b><span>${card[0]}</span></article>`).join("")}</div>`),
     section(ui.scenario, `<div class="scenario-list">${copy.scenario.map((item, i) => `<article><strong>${String(i + 1).padStart(2, "0")}</strong><span>${item}</span></article>`).join("")}</div>`),
     section(ui.programs, `<div class="program-links">${copy.programs.map((item) => `<a href="index.html#program">${item}</a>`).join("")}</div>`),
