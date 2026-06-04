@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>티켓 예매 | AI Future Expo 2026</title>
+    <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#050607" /><title>티켓 예매 | AI Future Expo 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
@@ -959,6 +964,7 @@
     const nameInput = document.querySelector("#name");
     const status = document.querySelector("#status");
     const modal = document.querySelector("#success-modal");
+    const modalClose = document.querySelector("#modal-close");
     const walletCard = document.querySelector("#wallet-card");
     const walletTitle = document.querySelector("#wallet-title");
 
@@ -995,7 +1001,7 @@
       const saved = JSON.parse(localStorage.getItem("expoTicket") || "null");
       if (!saved) { walletCard.className = "wallet-card empty"; walletCard.textContent = t.walletEmpty; return; }
       walletCard.className = "wallet-card";
-      walletCard.innerHTML = `<strong>${t.walletSaved}</strong><span>${saved.pass} / ${saved.date} / ${formatQty(saved.qty)}</span><b>${saved.code}</b><button class="wallet-delete" type="button" id="wallet-delete">${t.walletDelete}</button>`;
+      walletCard.innerHTML = `<strong>${t.walletSaved}</strong><span>${saved.pass} / ${saved.date} / ${formatQty(saved.qty)}</span><b>${saved.code}</b><button class="wallet-delete" type="button" id="wallet-delete" aria-label="${t.walletDelete}">${t.walletDelete}</button>`;
       document.querySelector("#wallet-delete").addEventListener("click", () => { localStorage.removeItem("expoTicket"); renderWallet(); });
     }
 
@@ -1014,10 +1020,18 @@
       document.querySelector("#modal-total").textContent = formatPrice(data.total);
       modal.classList.add("show");
       modal.setAttribute("aria-hidden", "false");
+      modalClose.focus();
       renderWallet();
     });
 
-    document.querySelector("#modal-close").addEventListener("click", () => { modal.classList.remove("show"); modal.setAttribute("aria-hidden", "true"); });
+    function closeModal() {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+    window.addEventListener("keydown", (event) => { if (event.key === "Escape") closeModal(); });
     document.querySelector("#d-day").textContent = `D-${Math.max(0, Math.ceil((new Date("2026-08-19T00:00:00+09:00") - new Date()) / 86400000))}`;
     updatePreview();
     renderWallet();

@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>참가기업 | AI Future Expo 2026</title>
+    <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#050607" /><title>참가기업 | AI Future Expo 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
@@ -768,7 +773,7 @@
       <div>
         <span class="eyebrow" data-i18n="eyebrow">EXHIBITOR DIRECTORY</span>
         <h1 data-i18n-html="title">참가기업<br>안내</h1>
-        <p class="lead" data-i18n="lead">AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 지금은 시안용 샘플 구역으로 구성했습니다.</p>
+        <p class="lead" data-i18n="lead">AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 현재는 공개 예정 카테고리 기준으로 구성했습니다.</p>
       </div>
       <div class="hero-panel" aria-label="Exhibitor summary">
         <div class="stat"><span data-i18n="statCompanyLabel">참가기업</span><b data-count="company">6</b></div>
@@ -831,17 +836,17 @@
 
   <script>
     const companies = [
-      { id: "medical", name: "AI Medical Exhibitor", ko: "AI 의료 샘플 기업", category: "medical", booth: "확정 예정", tags: ["AI Medical", "Healthcare"], descKo: "진단 보조, 병원 운영, 스마트 헬스케어 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for diagnostics, hospital operations, and smart healthcare will appear here.", productKo: "의료 AI 솔루션", productEn: "Medical AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "robotics", name: "Robotics Exhibitor", ko: "로보틱스 샘플 기업", category: "robotics", booth: "확정 예정", tags: ["Robotics", "Physical AI"], descKo: "협동로봇, 서비스 로봇, 산업 자동화 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for collaborative robots, service robots, and automation will appear here.", productKo: "로봇/자동화 데모", productEn: "Robot and automation demo", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "city", name: "Smart City Exhibitor", ko: "스마트시티 샘플 기업", category: "city", booth: "확정 예정", tags: ["Smart City", "Urban AI"], descKo: "교통, 안전, 에너지, 도시 데이터 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for traffic, safety, energy, and urban data will appear here.", productKo: "스마트시티 플랫폼", productEn: "Smart city platform", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "device", name: "Future Device Exhibitor", ko: "Future Device 샘플 기업", category: "device", booth: "확정 예정", tags: ["Wearable", "On-device AI"], descKo: "웨어러블, 스마트홈, 온디바이스 AI 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for wearables, smart home, and on-device AI will appear here.", productKo: "AI 디바이스 체험", productEn: "AI device experience", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "mobility", name: "Mobility Exhibitor", ko: "모빌리티 샘플 기업", category: "mobility", booth: "확정 예정", tags: ["Mobility", "Autonomous"], descKo: "자율주행, 물류, 커넥티드 교통 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for autonomous driving, logistics, and connected transport will appear here.", productKo: "모빌리티 AI 솔루션", productEn: "Mobility AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "security", name: "Cyber AI Exhibitor", ko: "보안 AI 샘플 기업", category: "security", booth: "확정 예정", tags: ["Security", "Data Trust"], descKo: "생성형 AI 보안, 데이터 신뢰, 거버넌스 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for generative AI security, data trust, and governance will appear here.", productKo: "보안/데이터 신뢰 솔루션", productEn: "Security and data trust solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" }
+      { id: "medical", name: "AI Medical Partner", ko: "AI 의료 참가 예정", category: "medical", booth: "확정 예정", tags: ["AI Medical", "Healthcare"], descKo: "진단 보조, 병원 운영, 스마트 헬스케어 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for diagnostics, hospital operations, and smart healthcare will appear here.", productKo: "의료 AI 솔루션", productEn: "Medical AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "robotics", name: "Robotics Partner", ko: "로보틱스 참가 예정", category: "robotics", booth: "확정 예정", tags: ["Robotics", "Physical AI"], descKo: "협동로봇, 서비스 로봇, 산업 자동화 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for collaborative robots, service robots, and automation will appear here.", productKo: "로봇/자동화 데모", productEn: "Robot and automation demo", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "city", name: "Smart City Partner", ko: "스마트시티 참가 예정", category: "city", booth: "확정 예정", tags: ["Smart City", "Urban AI"], descKo: "교통, 안전, 에너지, 도시 데이터 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for traffic, safety, energy, and urban data will appear here.", productKo: "스마트시티 플랫폼", productEn: "Smart city platform", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "device", name: "Future Device Partner", ko: "Future Device 참가 예정", category: "device", booth: "확정 예정", tags: ["Wearable", "On-device AI"], descKo: "웨어러블, 스마트홈, 온디바이스 AI 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for wearables, smart home, and on-device AI will appear here.", productKo: "AI 디바이스 체험", productEn: "AI device experience", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "mobility", name: "Mobility Partner", ko: "모빌리티 참가 예정", category: "mobility", booth: "확정 예정", tags: ["Mobility", "Autonomous"], descKo: "자율주행, 물류, 커넥티드 교통 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for autonomous driving, logistics, and connected transport will appear here.", productKo: "모빌리티 AI 솔루션", productEn: "Mobility AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
+      { id: "security", name: "Cyber AI Partner", ko: "보안 AI 참가 예정", category: "security", booth: "확정 예정", tags: ["Security", "Data Trust"], descKo: "생성형 AI 보안, 데이터 신뢰, 거버넌스 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for generative AI security, data trust, and governance will appear here.", productKo: "보안/데이터 신뢰 솔루션", productEn: "Security and data trust solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" }
     ];
 
     const copy = {
-      ko: { navHome: "홈", navExhibitors: "참가기업", navDirections: "오시는 길", navTicket: "티켓", eyebrow: "EXHIBITOR DIRECTORY", title: "참가기업<br>안내", lead: "AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 지금은 시안용 샘플 구역으로 구성했습니다.", statCompanyLabel: "참가기업", statBoothLabel: "부스 정보", statCategoryLabel: "기술 분야", statMeetLabel: "상담 가능", searchPlaceholder: "기업명, 기술, 분야 검색", mapTitle: "부스 배치 안내", layoutStatusLabel: "STATUS", layoutStatusValue: "최종 참가기업 확정 후 공개 예정", layoutInfoLabel: "INFO", layoutInfoValue: "기업명, 부스번호, 전시품목, 상담 가능 여부가 함께 표시됩니다.", mapDesc: "실제 전시장 구역은 확정 자료가 있을 때 넣는 것이 맞습니다. 지금은 임시 맵 대신 공개 상태를 안내합니다.", savedTitle: "관심 참가기업", savedDesc: "카드의 저장 버튼을 눌러 방문 후보를 모아보세요.", emptySaved: "아직 저장한 기업이 없습니다.", alertTitle: "참가기업 공개 알림", alertDesc: "실제 참가기업 리스트가 공개되면 알림을 받을 이메일을 등록하세요.", alertNamePlaceholder: "이름", alertEmailPlaceholder: "이메일", alertButton: "알림 신청", alertDone: "알림 신청이 저장되었습니다. 실제 발송 연동 전까지는 브라우저에만 보관됩니다.", detail: "상세보기", save: "저장", saved: "저장됨", empty: "조건에 맞는 참가기업이 없습니다.", modalBoothLabel: "부스", modalCategoryLabel: "분야", modalProductLabel: "전시품목", modalMeetingLabel: "상담", modalClose: "닫기", filters: { all: "전체", medical: "AI 의료", robotics: "로보틱스", city: "스마트시티", device: "Future Device", mobility: "모빌리티", security: "보안 AI" } },
-      en: { navHome: "Home", navExhibitors: "Exhibitors", navDirections: "Directions", navTicket: "Ticket", eyebrow: "EXHIBITOR DIRECTORY", title: "Exhibitor<br>Directory", lead: "Confirmed exhibitors will be listed by category once official materials are released. This page currently uses sample placeholders.", statCompanyLabel: "Exhibitors", statBoothLabel: "Booth Info", statCategoryLabel: "Categories", statMeetLabel: "Meetings", searchPlaceholder: "Search company, tech, or category", mapTitle: "Booth Layout", layoutStatusLabel: "STATUS", layoutStatusValue: "To be announced after final exhibitor confirmation", layoutInfoLabel: "INFO", layoutInfoValue: "Company name, booth number, exhibit item, and meeting availability will appear together.", mapDesc: "The real exhibition layout should be added only when confirmed materials are available. This page shows the public status instead of a temporary map.", savedTitle: "Saved Exhibitors", savedDesc: "Use the save button to collect companies for your visit plan.", emptySaved: "No saved exhibitors yet.", alertTitle: "Exhibitor Release Alert", alertDesc: "Register your email to be notified when the official exhibitor list is released.", alertNamePlaceholder: "Name", alertEmailPlaceholder: "Email", alertButton: "Request Alert", alertDone: "Alert request saved locally. Email delivery is not connected in this demo.", detail: "Details", save: "Save", saved: "Saved", empty: "No exhibitors match your filters.", modalBoothLabel: "Booth", modalCategoryLabel: "Category", modalProductLabel: "Exhibit", modalMeetingLabel: "Meeting", modalClose: "Close", filters: { all: "All", medical: "AI Medical", robotics: "Robotics", city: "Smart City", device: "Future Device", mobility: "Mobility", security: "Cyber AI" } }
+      ko: { navHome: "홈", navExhibitors: "참가기업", navDirections: "오시는 길", navTicket: "티켓", eyebrow: "EXHIBITOR DIRECTORY", title: "참가기업<br>안내", lead: "AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 현재는 공개 예정 카테고리 기준으로 구성했습니다.", statCompanyLabel: "참가기업", statBoothLabel: "부스 정보", statCategoryLabel: "기술 분야", statMeetLabel: "상담 가능", searchPlaceholder: "기업명, 기술, 분야 검색", mapTitle: "부스 배치 안내", layoutStatusLabel: "STATUS", layoutStatusValue: "최종 참가기업 확정 후 공개 예정", layoutInfoLabel: "INFO", layoutInfoValue: "기업명, 부스번호, 전시품목, 상담 가능 여부가 함께 표시됩니다.", mapDesc: "실제 전시장 구역은 확정 자료가 있을 때 넣는 것이 맞습니다. 지금은 임시 맵 대신 공개 상태를 안내합니다.", savedTitle: "관심 참가기업", savedDesc: "카드의 저장 버튼을 눌러 방문 후보를 모아보세요.", emptySaved: "아직 저장한 기업이 없습니다.", alertTitle: "참가기업 공개 알림", alertDesc: "실제 참가기업 리스트가 공개되면 알림을 받을 이메일을 등록하세요.", alertNamePlaceholder: "이름", alertEmailPlaceholder: "이메일", alertButton: "알림 신청", alertDone: "알림 신청이 저장되었습니다. 실제 발송 연동 전까지는 브라우저에만 보관됩니다.", detail: "상세보기", save: "저장", saved: "저장됨", empty: "조건에 맞는 참가기업이 없습니다.", modalBoothLabel: "부스", modalCategoryLabel: "분야", modalProductLabel: "전시품목", modalMeetingLabel: "상담", modalClose: "닫기", filters: { all: "전체", medical: "AI 의료", robotics: "로보틱스", city: "스마트시티", device: "Future Device", mobility: "모빌리티", security: "보안 AI" } },
+      en: { navHome: "Home", navExhibitors: "Exhibitors", navDirections: "Directions", navTicket: "Ticket", eyebrow: "EXHIBITOR DIRECTORY", title: "Exhibitor<br>Directory", lead: "Confirmed exhibitors will be listed by category once official materials are released. The current directory is organized around upcoming category groups.", statCompanyLabel: "Exhibitors", statBoothLabel: "Booth Info", statCategoryLabel: "Categories", statMeetLabel: "Meetings", searchPlaceholder: "Search company, tech, or category", mapTitle: "Booth Layout", layoutStatusLabel: "STATUS", layoutStatusValue: "To be announced after final exhibitor confirmation", layoutInfoLabel: "INFO", layoutInfoValue: "Company name, booth number, exhibit item, and meeting availability will appear together.", mapDesc: "The real exhibition layout should be added only when confirmed materials are available. This page shows the public status instead of a temporary map.", savedTitle: "Saved Exhibitors", savedDesc: "Use the save button to collect companies for your visit plan.", emptySaved: "No saved exhibitors yet.", alertTitle: "Exhibitor Release Alert", alertDesc: "Register your email to be notified when the official exhibitor list is released.", alertNamePlaceholder: "Name", alertEmailPlaceholder: "Email", alertButton: "Request Alert", alertDone: "Alert request saved locally. Email delivery is not connected in this demo.", detail: "Details", save: "Save", saved: "Saved", empty: "No exhibitors match your filters.", modalBoothLabel: "Booth", modalCategoryLabel: "Category", modalProductLabel: "Exhibit", modalMeetingLabel: "Meeting", modalClose: "Close", filters: { all: "All", medical: "AI Medical", robotics: "Robotics", city: "Smart City", device: "Future Device", mobility: "Mobility", security: "Cyber AI" } }
     };
 
     const state = { lang: localStorage.getItem("expoLanguage") === "en" ? "en" : "ko", filter: "all", query: "", saved: JSON.parse(localStorage.getItem("savedExhibitors") || "[]") };
@@ -851,6 +856,7 @@
     const search = document.querySelector("#search");
     const savedList = document.querySelector("#saved-list");
     const modal = document.querySelector("#company-modal");
+    const modalClose = document.querySelector("#modal-close");
 
     function companyName(company) { return state.lang === "ko" ? company.ko : company.name; }
     function categoryLabel(company) { return t().filters[company.category] || company.category; }
@@ -875,7 +881,7 @@
       if (!items.length) { grid.innerHTML = `<div class="empty">${t().empty}</div>`; return; }
       grid.innerHTML = items.map((company) => {
         const saved = isSaved(company.id);
-        return `<article class="company-card"><div class="company-top"><div class="company-logo">AI</div><span class="booth">${company.booth}</span></div><h2>${companyName(company)}</h2><p>${state.lang === "ko" ? company.descKo : company.descEn}</p><div class="tag-row">${company.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><div class="company-actions"><button type="button" data-detail="${company.id}">${t().detail}</button><button class="${saved ? "saved" : ""}" type="button" data-save="${company.id}">${saved ? t().saved : t().save}</button></div></article>`;
+        return `<article class="company-card"><div class="company-top"><div class="company-logo">AI</div><span class="booth">${company.booth}</span></div><h2>${companyName(company)}</h2><p>${state.lang === "ko" ? company.descKo : company.descEn}</p><div class="tag-row">${company.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><div class="company-actions"><button type="button" data-detail="${company.id}" aria-label="${companyName(company)} ${t().detail}">${t().detail}</button><button class="${saved ? "saved" : ""}" type="button" data-save="${company.id}" aria-pressed="${saved}" aria-label="${companyName(company)} ${saved ? t().saved : t().save}">${saved ? t().saved : t().save}</button></div></article>`;
       }).join("");
     }
 
@@ -904,6 +910,12 @@
       document.querySelector("#modal-meeting").textContent = state.lang === "ko" ? company.meetingKo : company.meetingEn;
       modal.classList.add("show");
       modal.setAttribute("aria-hidden", "false");
+      modalClose.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
     }
 
     document.addEventListener("click", (event) => {
@@ -921,7 +933,9 @@
     });
 
     search.addEventListener("input", () => { state.query = search.value; renderCompanies(); });
-    document.querySelector("#modal-close").addEventListener("click", () => { modal.classList.remove("show"); modal.setAttribute("aria-hidden", "true"); });
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+    window.addEventListener("keydown", (event) => { if (event.key === "Escape") closeModal(); });
     document.querySelector("#alert-form").addEventListener("submit", (event) => {
       event.preventDefault();
       localStorage.setItem("exhibitorAlertRequest", JSON.stringify({ name: document.querySelector("#alert-name").value, email: document.querySelector("#alert-email").value }));
