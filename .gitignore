@@ -5,3 +5,10 @@ node_modules/
 dist/
 build/
 *.log
+
+# Local handoff documents and generated review files
+docs/_handoff_render/
+docs/build_handoff_docx.py
+docs/AI_Future_Expo_업체대표님_설명가이드.docx
+docs/AI_Future_Expo_업체대표님_설명가이드.pdf
+~$*

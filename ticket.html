@@ -182,8 +182,10 @@
       max-width: 620px;
       margin-bottom: 22px;
       font-size: clamp(46px, 7vw, 88px);
-      line-height: 0.96;
-      letter-spacing: 0;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+      overflow-wrap: normal;
       text-transform: uppercase;
       text-shadow: 0 0 24px rgba(0, 229, 255, 0.3);
     }
@@ -259,53 +261,12 @@
       line-height: 1.35;
     }
 
-    .benefit-matrix {
-      width: min(620px, 100%);
-      margin-top: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.08);
+    .ticket-options {
+      display: block;
     }
 
-    .benefit-row {
-      display: grid;
-      grid-template-columns: 1.1fr repeat(3, 0.72fr);
-      gap: 1px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .benefit-row + .benefit-row {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .benefit-row span,
-    .benefit-row b {
-      min-height: 48px;
-      padding: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(5, 6, 7, 0.52);
-      color: #dfe7ea;
-      text-align: center;
-      font-size: 13px;
-      line-height: 1.35;
-    }
-
-    .benefit-row span:first-child,
-    .benefit-row b:first-child {
-      justify-content: flex-start;
-      color: var(--muted);
-      font-weight: 800;
-      text-align: left;
-    }
-
-    .benefit-head b {
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
+    .ticket-option {
+      pointer-events: none;
     }
 
     .ticket-panel,
@@ -449,7 +410,8 @@
     .panel-title {
       margin-bottom: 18px;
       font-size: 28px;
-      line-height: 1.2;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
     }
 
     .ticket-options {
@@ -581,6 +543,8 @@
     .wallet-panel h2 {
       margin-bottom: 14px;
       font-size: 22px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
     }
 
     .wallet-card {
@@ -631,6 +595,8 @@
     .summary-panel h2 {
       margin-bottom: 18px;
       font-size: 22px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
     }
 
     .summary-row {
@@ -694,6 +660,8 @@
     .modal-card h2 {
       margin-bottom: 12px;
       font-size: 32px;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
     }
 
     .modal-card p {
@@ -778,9 +746,6 @@
         grid-template-columns: 1fr;
       }
 
-      .benefit-row {
-        grid-template-columns: 1fr repeat(3, 0.68fr);
-      }
     }
 
     @media (max-width: 560px) {
@@ -834,9 +799,6 @@
         display: grid;
       }
 
-      .benefit-matrix {
-        display: none;
-      }
     }
 
     @media (max-width: 360px) {
@@ -869,12 +831,12 @@
       <section class="ticket-copy">
         <span class="eyebrow">TICKET RESERVATION</span>
         <h1>AI Future Expo Tickets</h1>
-        <p class="lead" data-copy="lead">2026년 8월 19일부터 21일까지, 코엑스에서 열리는 AI 미래 기술 전시를 가장 먼저 예약하세요. 패스 종류와 수량을 선택하면 예상 금액을 바로 확인할 수 있습니다.</p>
+        <p class="lead" data-copy="lead">관람할 날짜를 선택하고 간단하게 예매하세요. 모든 날짜는 동일한 일반 관람권으로 운영됩니다.</p>
 
         <div class="status-strip" aria-label="Ticket status">
-          <div class="status-chip"><span>EARLY BIRD</span><b data-copy="earlyValue">예매 시작</b></div>
+          <div class="status-chip"><span>RESERVATION</span><b data-copy="earlyValue">날짜별 예매</b></div>
           <div class="status-chip"><span>COUNTDOWN</span><b id="d-day">D-000</b></div>
-          <div class="status-chip"><span>LIMITED</span><b data-copy="limitedValue">우선 입장 패스</b></div>
+          <div class="status-chip"><span>PASS</span><b data-copy="limitedValue">일반 관람권</b></div>
         </div>
 
         <div class="event-strip">
@@ -883,13 +845,6 @@
           <div><span>OPEN</span><b>10:00 - 18:00</b></div>
         </div>
 
-        <div class="benefit-matrix" aria-label="Pass benefits comparison">
-          <div class="benefit-row benefit-head"><b>BENEFIT</b><b>VISITOR</b><b>BUSINESS</b><b>PREMIUM</b></div>
-          <div class="benefit-row"><span data-copy="benefitExpo">전시 관람</span><b>YES</b><b>YES</b><b>YES</b></div>
-          <div class="benefit-row"><span data-copy="benefitConference">컨퍼런스 세션</span><b>-</b><b>YES</b><b>YES</b></div>
-          <div class="benefit-row"><span data-copy="benefitBuyer">바이어 매칭</span><b>-</b><b>YES</b><b>YES</b></div>
-          <div class="benefit-row"><span data-copy="benefitPriority">우선 입장</span><b>-</b><b>-</b><b>YES</b></div>
-        </div>
       </section>
 
       <section class="purchase-column">
@@ -900,11 +855,9 @@
         </aside>
 
         <form class="ticket-panel" id="ticket-form">
-          <h2 class="panel-title" data-copy="panelTitle">티켓 구매</h2>
+          <h2 class="panel-title" data-copy="panelTitle">관람일 예매</h2>
           <div class="ticket-options">
-            <label class="ticket-option"><input type="radio" name="ticketType" value="visitor" data-label="Visitor Pass" data-price="29000" checked /><span class="option-body"><span><strong>Visitor Pass</strong><span data-copy="visitorDesc">전시 관람, 기술 쇼케이스, 프리뷰 영상존 입장</span></span><b class="price">KRW 29,000</b></span></label>
-            <label class="ticket-option"><input type="radio" name="ticketType" value="business" data-label="Business Pass" data-price="79000" /><span class="option-body"><span><strong>Business Pass</strong><span data-copy="businessDesc">전시 관람, 컨퍼런스 세션, 바이어 매칭 라운지</span></span><b class="price">KRW 79,000</b></span></label>
-            <label class="ticket-option"><input type="radio" name="ticketType" value="premium" data-label="Premium Pass" data-price="149000" /><span class="option-body"><span><strong>Premium Pass</strong><span data-copy="premiumDesc">전체 프로그램, 우선 입장, 네트워킹 리셉션 포함</span></span><b class="price">KRW 149,000</b></span></label>
+            <label class="ticket-option"><input type="radio" name="ticketType" value="visitor" data-label="General Admission" data-price="29000" checked /><span class="option-body"><span><strong>General Admission</strong><span data-copy="visitorDesc">선택한 날짜의 전시와 프로그램을 관람할 수 있습니다.</span></span><b class="price">KRW 29,000</b></span></label>
           </div>
 
           <div class="form-grid">
@@ -912,7 +865,6 @@
             <div class="field"><label for="quantity" data-copy="quantity">수량</label><select id="quantity" name="quantity"><option value="1">1매</option><option value="2">2매</option><option value="3">3매</option><option value="4">4매</option><option value="5">5매</option></select></div>
             <div class="field"><label for="name" data-copy="name">이름</label><input id="name" name="name" type="text" placeholder="홍길동" required /></div>
             <div class="field"><label for="email" data-copy="email">이메일</label><input id="email" name="email" type="email" placeholder="you@example.com" required /></div>
-            <div class="field full"><label for="purpose" data-copy="purpose">방문 목적</label><select id="purpose" name="purpose"><option data-copy="purposeExpo">전시 관람</option><option data-copy="purposeBusiness">비즈니스 미팅</option><option data-copy="purposeConference">컨퍼런스 참석</option><option data-copy="purposeResearch">교육 및 리서치</option></select></div>
           </div>
           <button class="purchase-btn" type="submit" data-copy="submit">구매 정보 확인</button>
           <p class="status" id="status" role="status"></p>
@@ -943,8 +895,64 @@
 
   <script>
     const copySet = {
-      ko: { title: "티켓 예매 | AI Future Expo 2026", navAbout: "전시 소개", navTech: "기술 보기", navExhibitors: "참가기업", navDirections: "오시는 길", lead: "2026년 8월 19일부터 21일까지, 코엑스에서 열리는 AI 미래 기술 전시를 가장 먼저 예약하세요. 패스 종류와 수량을 선택하면 예상 금액을 바로 확인할 수 있습니다.", earlyValue: "예매 시작", limitedValue: "우선 입장 패스", benefitExpo: "전시 관람", benefitConference: "컨퍼런스 세션", benefitBuyer: "바이어 매칭", benefitPriority: "우선 입장", panelTitle: "티켓 구매", visitorDesc: "전시 관람, 기술 쇼케이스, 프리뷰 영상존 입장", businessDesc: "전시 관람, 컨퍼런스 세션, 바이어 매칭 라운지", premiumDesc: "전체 프로그램, 우선 입장, 네트워킹 리셉션 포함", visitDate: "방문 날짜", quantity: "수량", name: "이름", email: "이메일", purpose: "방문 목적", purposeExpo: "전시 관람", purposeBusiness: "비즈니스 미팅", purposeConference: "컨퍼런스 참석", purposeResearch: "교육 및 리서치", submit: "구매 정보 확인", summaryTitle: "주문 요약", pass: "패스", reservationCode: "예약 코드", totalLabel: "합계", modalDesc: "입력하신 정보로 예매 요약을 만들었습니다. 실제 결제 연동 전 데모 페이지입니다.", close: "확인", walletTitle: "내 티켓 월렛", walletEmpty: "아직 저장된 티켓이 없습니다. 구매 정보 확인을 누르면 이곳에 티켓이 저장됩니다.", walletSaved: "저장된 티켓", walletDelete: "월렛에서 삭제", ticketUnit: "매", status: (pass, qty) => `${pass} ${qty}매 구매 정보가 확인되었습니다. 결제 연동 전 데모 페이지입니다.` },
-      en: { title: "Ticket | AI Future Expo 2026", navAbout: "About", navTech: "Technology", navExhibitors: "Exhibitors", navDirections: "Directions", lead: "Reserve your visit to AI Future Expo 2026 at COEX, August 19-21. Select a pass and quantity to preview the estimated total instantly.", earlyValue: "Open Now", limitedValue: "Priority Pass", benefitExpo: "Expo Access", benefitConference: "Conference Sessions", benefitBuyer: "Buyer Matching", benefitPriority: "Priority Entry", panelTitle: "Buy Tickets", visitorDesc: "Expo access, tech showcases, and preview video zone", businessDesc: "Expo access, conference sessions, and buyer matching lounge", premiumDesc: "Full program access, priority entry, and networking reception", visitDate: "Visit Date", quantity: "Quantity", name: "Name", email: "Email", purpose: "Visit Purpose", purposeExpo: "Expo Visit", purposeBusiness: "Business Meeting", purposeConference: "Conference", purposeResearch: "Education / Research", submit: "Review Purchase", summaryTitle: "Order Summary", pass: "Pass", reservationCode: "Reservation Code", totalLabel: "Total", modalDesc: "A reservation summary has been created from your information. This is a demo page before payment integration.", close: "Confirm", walletTitle: "My Ticket Wallet", walletEmpty: "No saved ticket yet. Review purchase information to save a ticket here.", walletSaved: "Saved Ticket", walletDelete: "Remove from Wallet", ticketUnit: "ticket", status: (pass, qty) => `${pass} x ${qty} has been reviewed. This is a demo page before payment integration.` }
+      ko: {
+        title: "티켓 예매 | AI Future Expo 2026",
+        navAbout: "전시 소개",
+        navTech: "기술 보기",
+        navExhibitors: "참가기업",
+        navDirections: "오시는 길",
+        lead: "관람할 날짜를 선택하고 간단하게 예매하세요. 모든 날짜는 동일한 일반 관람권으로 운영됩니다.",
+        earlyValue: "날짜별 예매",
+        limitedValue: "일반 관람권",
+        panelTitle: "관람일 예매",
+        visitorDesc: "선택한 날짜의 전시와 프로그램을 관람할 수 있습니다.",
+        visitDate: "방문 날짜",
+        quantity: "수량",
+        name: "이름",
+        email: "이메일",
+        submit: "구매 정보 확인",
+        summaryTitle: "주문 요약",
+        pass: "패스",
+        reservationCode: "예약 코드",
+        totalLabel: "합계",
+        modalDesc: "입력하신 정보로 예매 요약을 만들었습니다. 실제 결제 연동 전 데모 페이지입니다.",
+        close: "확인",
+        walletTitle: "내 티켓 월렛",
+        walletEmpty: "아직 저장된 티켓이 없습니다. 구매 정보 확인을 누르면 이곳에 티켓이 저장됩니다.",
+        walletSaved: "저장된 티켓",
+        walletDelete: "월렛에서 삭제",
+        ticketUnit: "매",
+        status: (pass, qty) => `${pass} ${qty}매 구매 정보가 확인되었습니다. 결제 연동 전 데모 페이지입니다.`
+      },
+      en: {
+        title: "Ticket | AI Future Expo 2026",
+        navAbout: "About",
+        navTech: "Technology",
+        navExhibitors: "Exhibitors",
+        navDirections: "Directions",
+        lead: "Choose your visit date and reserve a single general admission ticket.",
+        earlyValue: "By Date",
+        limitedValue: "General Admission",
+        panelTitle: "Choose Your Date",
+        visitorDesc: "Access the exhibition and programs on your selected date.",
+        visitDate: "Visit Date",
+        quantity: "Quantity",
+        name: "Name",
+        email: "Email",
+        submit: "Review Purchase",
+        summaryTitle: "Order Summary",
+        pass: "Pass",
+        reservationCode: "Reservation Code",
+        totalLabel: "Total",
+        modalDesc: "A reservation summary has been created from your information. This is a demo page before payment integration.",
+        close: "Confirm",
+        walletTitle: "My Ticket Wallet",
+        walletEmpty: "No saved ticket yet. Review purchase information to save a ticket here.",
+        walletSaved: "Saved Ticket",
+        walletDelete: "Remove from Wallet",
+        ticketUnit: "ticket",
+        status: (pass, qty) => `${pass} x ${qty} has been reviewed. This is a demo page before payment integration.`
+      }
     };
 
     const lang = localStorage.getItem("expoLanguage") === "en" ? "en" : "ko";

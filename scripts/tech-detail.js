@@ -1,6 +1,6 @@
 ﻿const techDetails = {
   medical: {
-    image: "images/ai-medical-modern.png",
+    image: "images/tech-medical-real.jpg",
     alt: "AI medical technology",
     href: "tech-ai-medical.html",
     eyebrow: "AI MEDICAL",
@@ -34,7 +34,7 @@
     }
   },
   robotics: {
-    image: "images/robotics-modern.png",
+    image: "images/tech-robotics-real.jpg",
     alt: "Robotics exhibition",
     href: "tech-robotics.html",
     eyebrow: "ROBOTICS",
@@ -68,7 +68,7 @@
     }
   },
   city: {
-    image: "images/smart-city-modern.png",
+    image: "images/tech-city-real.jpg",
     alt: "Smart city technology",
     href: "tech-smart-city.html",
     eyebrow: "SMART CITY",
@@ -102,7 +102,7 @@
     }
   },
   device: {
-    image: "images/future-device-modern.png",
+    image: "images/tech-device-real.jpg",
     alt: "Future AI device",
     href: "tech-future-device.html",
     eyebrow: "FUTURE DEVICE",
@@ -136,7 +136,7 @@
     }
   },
   mobility: {
-    image: "images/mobility-modern.png",
+    image: "images/tech-mobility-real.jpg",
     alt: "Future mobility technology",
     href: "tech-mobility.html",
     eyebrow: "MOBILITY",
@@ -170,7 +170,7 @@
     }
   },
   cyber: {
-    image: "images/cyber-ai-modern.png",
+    image: "images/tech-cyber-real.jpg",
     alt: "Cyber AI security",
     href: "tech-cyber-ai.html",
     eyebrow: "CYBER AI",

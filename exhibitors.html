@@ -188,8 +188,10 @@
       max-width: 760px;
       margin-bottom: 22px;
       font-size: clamp(46px, 7vw, 88px);
-      line-height: 0.96;
-      letter-spacing: 0;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+      overflow-wrap: normal;
       text-transform: uppercase;
       text-shadow: 0 0 24px rgba(0, 229, 255, 0.3);
     }
@@ -241,7 +243,7 @@
       width: min(1280px, 100%);
       margin: 0 auto 18px;
       display: grid;
-      grid-template-columns: minmax(260px, 0.84fr) 1fr;
+      grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1.42fr);
       gap: 14px;
     }
 
@@ -271,9 +273,19 @@
       gap: 8px;
       padding: 8px;
       overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overscroll-behavior-inline: contain;
+      scroll-behavior: smooth;
+    }
+
+    .filter-bar::-webkit-scrollbar {
+      display: none;
     }
 
     .filter-btn {
+      flex: 0 0 auto;
       min-height: 40px;
       padding: 0 14px;
       border: 1px solid transparent;
@@ -298,7 +310,7 @@
       width: min(1280px, 100%);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-columns: 1fr;
       gap: 20px;
       align-items: start;
     }
@@ -323,6 +335,7 @@
     }
 
     .company-top {
+      position: relative;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
@@ -330,22 +343,34 @@
     }
 
     .company-logo {
-      width: 48px;
-      height: 48px;
+      width: 100%;
+      height: 104px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(0, 229, 255, 0.24);
       border-radius: 8px;
-      background:
-        radial-gradient(circle, rgba(0, 229, 255, 0.18), transparent 65%),
-        rgba(255, 255, 255, 0.06);
+      background: #fff;
       color: var(--cyan);
       font-size: 14px;
       font-weight: 900;
       letter-spacing: 0.04em;
     }
 
+    .company-logo img {
+      width: 70%;
+      max-width: 150px;
+      max-height: 52px;
+      object-fit: contain;
+    }
+
+    .side-panel {
+      display: none;
+    }
+
     .booth {
+      position: absolute;
+      top: 10px;
+      right: 10px;
       min-height: 30px;
       display: inline-flex;
       align-items: center;
@@ -361,7 +386,8 @@
 
     .company-card h2 {
       font-size: 22px;
-      line-height: 1.32;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
       word-break: keep-all;
     }
 
@@ -446,6 +472,8 @@
     .saved-card h2 {
       margin-bottom: 14px;
       font-size: 20px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
     }
 
     .alert-card p {
@@ -585,7 +613,8 @@
     .company-modal h2 {
       margin-bottom: 12px;
       font-size: 28px;
-      line-height: 1.25;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
     }
 
     .company-modal p {
@@ -632,6 +661,20 @@
       color: var(--cyan);
       font-weight: 900;
       cursor: pointer;
+    }
+
+    @media (min-width: 1121px) {
+      .filter-bar {
+        justify-content: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        overflow-x: hidden;
+      }
+
+      .filter-btn {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
     }
 
     @media (max-width: 1120px) {
@@ -752,6 +795,9 @@
         display: none;
       }
     }
+    main .side-panel {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -773,13 +819,13 @@
       <div>
         <span class="eyebrow" data-i18n="eyebrow">EXHIBITOR DIRECTORY</span>
         <h1 data-i18n-html="title">참가기업<br>안내</h1>
-        <p class="lead" data-i18n="lead">AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 현재는 공개 예정 카테고리 기준으로 구성했습니다.</p>
+        <p class="lead" data-i18n="lead">실제 기업 CI를 활용해 구성한 포트폴리오용 예시 디렉터리입니다.</p>
       </div>
       <div class="hero-panel" aria-label="Exhibitor summary">
-        <div class="stat"><span data-i18n="statCompanyLabel">참가기업</span><b data-count="company">6</b></div>
-        <div class="stat"><span data-i18n="statBoothLabel">부스 정보</span><b>TBA</b></div>
-        <div class="stat"><span data-i18n="statCategoryLabel">기술 분야</span><b>6</b></div>
-        <div class="stat"><span data-i18n="statMeetLabel">상담 가능</span><b>TBA</b></div>
+        <div class="stat"><span data-i18n="statCompanyLabel">참가기업</span><b data-count="company">9</b></div>
+        <div class="stat"><span data-i18n="statBoothLabel">전시 구역</span><b>7 ZONES</b></div>
+        <div class="stat"><span data-i18n="statCategoryLabel">기술 분야</span><b>7</b></div>
+        <div class="stat"><span data-i18n="statMeetLabel">현장 상담</span><b>OPEN</b></div>
       </div>
     </section>
 
@@ -836,17 +882,96 @@
 
   <script>
     const companies = [
-      { id: "medical", name: "AI Medical Partner", ko: "AI 의료 참가 예정", category: "medical", booth: "확정 예정", tags: ["AI Medical", "Healthcare"], descKo: "진단 보조, 병원 운영, 스마트 헬스케어 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for diagnostics, hospital operations, and smart healthcare will appear here.", productKo: "의료 AI 솔루션", productEn: "Medical AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "robotics", name: "Robotics Partner", ko: "로보틱스 참가 예정", category: "robotics", booth: "확정 예정", tags: ["Robotics", "Physical AI"], descKo: "협동로봇, 서비스 로봇, 산업 자동화 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for collaborative robots, service robots, and automation will appear here.", productKo: "로봇/자동화 데모", productEn: "Robot and automation demo", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "city", name: "Smart City Partner", ko: "스마트시티 참가 예정", category: "city", booth: "확정 예정", tags: ["Smart City", "Urban AI"], descKo: "교통, 안전, 에너지, 도시 데이터 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for traffic, safety, energy, and urban data will appear here.", productKo: "스마트시티 플랫폼", productEn: "Smart city platform", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "device", name: "Future Device Partner", ko: "Future Device 참가 예정", category: "device", booth: "확정 예정", tags: ["Wearable", "On-device AI"], descKo: "웨어러블, 스마트홈, 온디바이스 AI 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for wearables, smart home, and on-device AI will appear here.", productKo: "AI 디바이스 체험", productEn: "AI device experience", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "mobility", name: "Mobility Partner", ko: "모빌리티 참가 예정", category: "mobility", booth: "확정 예정", tags: ["Mobility", "Autonomous"], descKo: "자율주행, 물류, 커넥티드 교통 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for autonomous driving, logistics, and connected transport will appear here.", productKo: "모빌리티 AI 솔루션", productEn: "Mobility AI solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" },
-      { id: "security", name: "Cyber AI Partner", ko: "보안 AI 참가 예정", category: "security", booth: "확정 예정", tags: ["Security", "Data Trust"], descKo: "생성형 AI 보안, 데이터 신뢰, 거버넌스 분야 참가기업이 확정되면 공개됩니다.", descEn: "Confirmed exhibitors for generative AI security, data trust, and governance will appear here.", productKo: "보안/데이터 신뢰 솔루션", productEn: "Security and data trust solution", meetingKo: "상담 가능 여부 공개 예정", meetingEn: "Meeting status to be announced" }
+      { id: "medical", name: "Samsung Electronics", ko: "삼성전자", logo: "images/logos/samsung.svg", category: "medical", booth: "A-101", tags: ["AI Medical", "Device AI"], descKo: "AI 기반 헬스케어와 온디바이스 기술을 소개합니다.", descEn: "AI healthcare and on-device technology.", productKo: "AI 헬스케어 디바이스", productEn: "AI healthcare devices", meetingKo: "현장 상담", meetingEn: "On-site meeting" },
+      { id: "robotics", name: "LG Electronics", ko: "LG전자", logo: "images/logos/lg.svg", category: "robotics", booth: "A-108", tags: ["Robotics", "Smart Home"], descKo: "서비스 로봇과 스마트 라이프 솔루션을 선보입니다.", descEn: "Service robotics and smart life solutions.", productKo: "서비스 로봇 데모", productEn: "Service robot demo", meetingKo: "현장 상담", meetingEn: "On-site meeting" },
+      { id: "city", name: "NAVER", ko: "NAVER", logo: "images/logos/naver.svg", category: "city", booth: "B-203", tags: ["Cloud AI", "Digital Twin"], descKo: "클라우드 AI와 디지털 트윈 기술을 소개합니다.", descEn: "Cloud AI and digital twin technology.", productKo: "도시 데이터 플랫폼", productEn: "Urban data platform", meetingKo: "현장 상담", meetingEn: "On-site meeting" },
+      { id: "device", name: "Kakao", ko: "카카오", logo: "images/logos/kakao.svg", category: "device", booth: "B-210", tags: ["Generative AI", "Platform"], descKo: "일상과 연결되는 생성형 AI 서비스를 만나보세요.", descEn: "Generative AI services for everyday life.", productKo: "AI 플랫폼 체험", productEn: "AI platform experience", meetingKo: "현장 상담", meetingEn: "On-site meeting" },
+      { id: "mobility", name: "Hyundai Motor Company", ko: "현대자동차", logo: "images/logos/hyundai.svg", category: "mobility", booth: "C-301", tags: ["Mobility", "Autonomous"], descKo: "자율주행과 소프트웨어 중심 모빌리티를 전시합니다.", descEn: "Autonomous and software-defined mobility.", productKo: "미래 모빌리티", productEn: "Future mobility", meetingKo: "현장 상담", meetingEn: "On-site meeting" },
+      { id: "security", name: "SK Telecom", ko: "SK텔레콤", logo: "images/logos/skt.svg", category: "security", booth: "C-312", tags: ["AI Infra", "Security"], descKo: "AI 인프라와 데이터 보안 기술을 소개합니다.", descEn: "AI infrastructure and data security.", productKo: "AI 보안 솔루션", productEn: "AI security solution", meetingKo: "현장 상담", meetingEn: "On-site meeting" },
+      { id: "upstage", name: "Upstage", ko: "업스테이지", logo: "images/logos/upstage.svg", category: "ai", booth: "AI ZONE", tags: ["Generative AI", "Document AI", "LLM"], descKo: "문서 AI와 자체 언어모델 Solar를 중심으로 기업용 생성형 AI 기술을 소개합니다.", descEn: "Enterprise generative AI powered by document intelligence and the Solar language model.", productKo: "Solar·Document AI", productEn: "Solar and Document AI", meetingKo: "전시 안내", meetingEn: "Exhibit information" },
+      { id: "rebellions", name: "Rebellions", ko: "리벨리온", logo: "images/logos/rebellions.svg", category: "ai", booth: "AI ZONE", tags: ["AI Chip", "NPU", "Infrastructure"], descKo: "대규모 AI 연산을 위한 고성능 AI 반도체와 인프라 기술을 소개합니다.", descEn: "High-performance AI semiconductors and infrastructure for large-scale AI computing.", productKo: "AI 반도체·NPU", productEn: "AI semiconductor and NPU", meetingKo: "전시 안내", meetingEn: "Exhibit information" },
+      { id: "openai", name: "OpenAI", ko: "OpenAI", logo: "images/logos/openai.svg", category: "ai", booth: "AI ZONE", tags: ["Generative AI", "Multimodal", "AI Platform"], descKo: "언어, 이미지, 음성 등 다양한 형태의 정보를 다루는 생성형 AI 플랫폼을 소개합니다.", descEn: "A generative AI platform spanning language, image, voice, and multimodal experiences.", productKo: "생성형 AI 플랫폼", productEn: "Generative AI platform", meetingKo: "전시 안내", meetingEn: "Exhibit information" }
     ];
 
     const copy = {
-      ko: { navHome: "홈", navExhibitors: "참가기업", navDirections: "오시는 길", navTicket: "티켓", eyebrow: "EXHIBITOR DIRECTORY", title: "참가기업<br>안내", lead: "AI Future Expo 참가기업은 공식 확정 자료가 공개되면 이 페이지에서 분야별로 확인할 수 있습니다. 현재는 공개 예정 카테고리 기준으로 구성했습니다.", statCompanyLabel: "참가기업", statBoothLabel: "부스 정보", statCategoryLabel: "기술 분야", statMeetLabel: "상담 가능", searchPlaceholder: "기업명, 기술, 분야 검색", mapTitle: "부스 배치 안내", layoutStatusLabel: "STATUS", layoutStatusValue: "최종 참가기업 확정 후 공개 예정", layoutInfoLabel: "INFO", layoutInfoValue: "기업명, 부스번호, 전시품목, 상담 가능 여부가 함께 표시됩니다.", mapDesc: "실제 전시장 구역은 확정 자료가 있을 때 넣는 것이 맞습니다. 지금은 임시 맵 대신 공개 상태를 안내합니다.", savedTitle: "관심 참가기업", savedDesc: "카드의 저장 버튼을 눌러 방문 후보를 모아보세요.", emptySaved: "아직 저장한 기업이 없습니다.", alertTitle: "참가기업 공개 알림", alertDesc: "실제 참가기업 리스트가 공개되면 알림을 받을 이메일을 등록하세요.", alertNamePlaceholder: "이름", alertEmailPlaceholder: "이메일", alertButton: "알림 신청", alertDone: "알림 신청이 저장되었습니다. 실제 발송 연동 전까지는 브라우저에만 보관됩니다.", detail: "상세보기", save: "저장", saved: "저장됨", empty: "조건에 맞는 참가기업이 없습니다.", modalBoothLabel: "부스", modalCategoryLabel: "분야", modalProductLabel: "전시품목", modalMeetingLabel: "상담", modalClose: "닫기", filters: { all: "전체", medical: "AI 의료", robotics: "로보틱스", city: "스마트시티", device: "Future Device", mobility: "모빌리티", security: "보안 AI" } },
-      en: { navHome: "Home", navExhibitors: "Exhibitors", navDirections: "Directions", navTicket: "Ticket", eyebrow: "EXHIBITOR DIRECTORY", title: "Exhibitor<br>Directory", lead: "Confirmed exhibitors will be listed by category once official materials are released. The current directory is organized around upcoming category groups.", statCompanyLabel: "Exhibitors", statBoothLabel: "Booth Info", statCategoryLabel: "Categories", statMeetLabel: "Meetings", searchPlaceholder: "Search company, tech, or category", mapTitle: "Booth Layout", layoutStatusLabel: "STATUS", layoutStatusValue: "To be announced after final exhibitor confirmation", layoutInfoLabel: "INFO", layoutInfoValue: "Company name, booth number, exhibit item, and meeting availability will appear together.", mapDesc: "The real exhibition layout should be added only when confirmed materials are available. This page shows the public status instead of a temporary map.", savedTitle: "Saved Exhibitors", savedDesc: "Use the save button to collect companies for your visit plan.", emptySaved: "No saved exhibitors yet.", alertTitle: "Exhibitor Release Alert", alertDesc: "Register your email to be notified when the official exhibitor list is released.", alertNamePlaceholder: "Name", alertEmailPlaceholder: "Email", alertButton: "Request Alert", alertDone: "Alert request saved locally. Email delivery is not connected in this demo.", detail: "Details", save: "Save", saved: "Saved", empty: "No exhibitors match your filters.", modalBoothLabel: "Booth", modalCategoryLabel: "Category", modalProductLabel: "Exhibit", modalMeetingLabel: "Meeting", modalClose: "Close", filters: { all: "All", medical: "AI Medical", robotics: "Robotics", city: "Smart City", device: "Future Device", mobility: "Mobility", security: "Cyber AI" } }
+      ko: {
+        navHome: "홈",
+        navExhibitors: "참가기업",
+        navDirections: "오시는 길",
+        navTicket: "티켓",
+        eyebrow: "EXHIBITOR DIRECTORY",
+        title: "참가기업<br>안내",
+        lead: "실제 기업 CI를 활용해 구성한 포트폴리오용 예시 디렉터리입니다.",
+        statCompanyLabel: "참가기업",
+        statBoothLabel: "전시 구역",
+        statCategoryLabel: "기술 분야",
+        statMeetLabel: "현장 상담",
+        searchPlaceholder: "기업명, 기술, 분야 검색",
+        mapTitle: "부스 배치 안내",
+        layoutStatusLabel: "STATUS",
+        layoutStatusValue: "최종 참가기업 확정 후 공개 예정",
+        layoutInfoLabel: "INFO",
+        layoutInfoValue: "기업명, 전시 구역, 전시품목, 안내 정보가 함께 표시됩니다.",
+        mapDesc: "실제 전시장 구역은 확정 자료가 있을 때 업데이트할 수 있습니다.",
+        savedTitle: "관심 참가기업",
+        savedDesc: "카드의 저장 버튼을 눌러 방문 후보를 모아보세요.",
+        emptySaved: "아직 저장한 기업이 없습니다.",
+        alertTitle: "참가기업 공개 알림",
+        alertDesc: "실제 참가기업 리스트가 공개되면 알림을 받을 이메일을 등록하세요.",
+        alertNamePlaceholder: "이름",
+        alertEmailPlaceholder: "이메일",
+        alertButton: "알림 신청",
+        alertDone: "알림 신청이 저장되었습니다. 실제 발송 연동 전까지는 브라우저에만 보관됩니다.",
+        detail: "상세보기",
+        save: "저장",
+        saved: "저장됨",
+        empty: "조건에 맞는 참가기업이 없습니다.",
+        modalBoothLabel: "전시 구역",
+        modalCategoryLabel: "분야",
+        modalProductLabel: "전시품목",
+        modalMeetingLabel: "안내",
+        modalClose: "닫기",
+        filters: { all: "전체", ai: "AI 기업", medical: "AI 의료", robotics: "로보틱스", city: "스마트시티", device: "Future Device", mobility: "모빌리티", security: "보안 AI" }
+      },
+      en: {
+        navHome: "Home",
+        navExhibitors: "Exhibitors",
+        navDirections: "Directions",
+        navTicket: "Ticket",
+        eyebrow: "EXHIBITOR DIRECTORY",
+        title: "Exhibitor<br>Directory",
+        lead: "A portfolio sample directory built with real company brand assets.",
+        statCompanyLabel: "Exhibitors",
+        statBoothLabel: "Zones",
+        statCategoryLabel: "Categories",
+        statMeetLabel: "Meetings",
+        searchPlaceholder: "Search company, tech, or category",
+        mapTitle: "Booth Layout",
+        layoutStatusLabel: "STATUS",
+        layoutStatusValue: "To be announced after final exhibitor confirmation",
+        layoutInfoLabel: "INFO",
+        layoutInfoValue: "Company, exhibit zone, featured technology, and information are shown together.",
+        mapDesc: "The venue layout can be updated when confirmed materials are available.",
+        savedTitle: "Saved Exhibitors",
+        savedDesc: "Use the save button to collect companies for your visit plan.",
+        emptySaved: "No saved exhibitors yet.",
+        alertTitle: "Exhibitor Release Alert",
+        alertDesc: "Register your email to be notified when the official exhibitor list is released.",
+        alertNamePlaceholder: "Name",
+        alertEmailPlaceholder: "Email",
+        alertButton: "Request Alert",
+        alertDone: "Alert request saved locally. Email delivery is not connected in this demo.",
+        detail: "Details",
+        save: "Save",
+        saved: "Saved",
+        empty: "No exhibitors match your filters.",
+        modalBoothLabel: "Exhibit Zone",
+        modalCategoryLabel: "Category",
+        modalProductLabel: "Exhibit",
+        modalMeetingLabel: "Info",
+        modalClose: "Close",
+        filters: { all: "All", ai: "AI Companies", medical: "AI Medical", robotics: "Robotics", city: "Smart City", device: "Future Device", mobility: "Mobility", security: "Cyber AI" }
+      }
     };
 
     const state = { lang: localStorage.getItem("expoLanguage") === "en" ? "en" : "ko", filter: "all", query: "", saved: JSON.parse(localStorage.getItem("savedExhibitors") || "[]") };
@@ -881,7 +1006,7 @@
       if (!items.length) { grid.innerHTML = `<div class="empty">${t().empty}</div>`; return; }
       grid.innerHTML = items.map((company) => {
         const saved = isSaved(company.id);
-        return `<article class="company-card"><div class="company-top"><div class="company-logo">AI</div><span class="booth">${company.booth}</span></div><h2>${companyName(company)}</h2><p>${state.lang === "ko" ? company.descKo : company.descEn}</p><div class="tag-row">${company.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><div class="company-actions"><button type="button" data-detail="${company.id}" aria-label="${companyName(company)} ${t().detail}">${t().detail}</button><button class="${saved ? "saved" : ""}" type="button" data-save="${company.id}" aria-pressed="${saved}" aria-label="${companyName(company)} ${saved ? t().saved : t().save}">${saved ? t().saved : t().save}</button></div></article>`;
+        return `<article class="company-card"><div class="company-top"><div class="company-logo"><img src="${company.logo}" alt="${companyName(company)} logo"></div><span class="booth">${company.booth}</span></div><h2>${companyName(company)}</h2><p>${state.lang === "ko" ? company.descKo : company.descEn}</p><div class="tag-row">${company.tags.map((tag) => `<span>${tag}</span>`).join("")}</div><div class="company-actions"><button type="button" data-detail="${company.id}" aria-label="${companyName(company)} ${t().detail}">${t().detail}</button><button class="${saved ? "saved" : ""}" type="button" data-save="${company.id}" aria-pressed="${saved}" aria-label="${companyName(company)} ${saved ? t().saved : t().save}">${saved ? t().saved : t().save}</button></div></article>`;
       }).join("");
     }
 

@@ -32,9 +32,12 @@ AI 기술 전시회를 콘셉트로 제작한 반응형 홍보 웹사이트입�
 - 기술별 상세 페이지 6종 제작
 - 기술 프리뷰 영상 영역 구현
 - 참가기업 디렉터리, 필터, 검색, 저장 기능
-- 티켓 예매 페이지와 오시는 길 페이지 구성
+- 실제 기업 CI를 활용한 참가기업 카드 구성
+- 날짜별 일반 관람권 예매 페이지와 오시는 길 페이지 구성
 - 파비콘, iOS/Android 홈 화면 아이콘 적용
 - Vercel 정적 배포 설정
+
+> 참가기업과 연사 정보는 포트폴리오 시연을 위한 예시 데이터입니다. 실제 행사 참가 또는 출연을 의미하지 않습니다.
 
 ## Video Production
 
@@ -92,14 +95,18 @@ AI 기술 전시회를 콘셉트로 제작한 반응형 홍보 웹사이트입�
 
 ## Deployment
 
-GitHub 저장소에 푸시한 뒤 Vercel에서 해당 저장소를 Import하면 됩니다. 빌드 명령어는 필요 없습니다.
+이 프로젝트는 빌드 과정이 없는 정적 사이트입니다. 변경 파일을 확인한 뒤 아래 명령어로 GitHub의 `main` 브랜치에 업데이트할 수 있습니다.
 
 ```bash
-git add -A
-git commit -m "Prepare final AI expo site"
-git push
+git status
+git add .
+git status
+git commit -m "Refine AI expo content and responsive UI"
+git push origin main
 ```
+
+원격 저장소는 `origin`으로 연결되어 있으며, Vercel에서 해당 GitHub 저장소를 연결하면 푸시 후 자동 배포할 수 있습니다.
 
 ## Asset Note
 
-영상 파일은 GitHub의 권장 용량인 50MB를 넘을 수 있습니다. 현재 구조로도 배포는 가능하지만, 장기 운영 프로젝트라면 Git LFS 또는 외부 영상 호스팅 사용을 권장합니다.
+일부 영상은 GitHub 권장 크기인 50MB를 넘지만 단일 파일 제한인 100MB 이내입니다. 장기 운영 프로젝트라면 Git LFS 또는 외부 영상 호스팅 사용을 권장합니다.
